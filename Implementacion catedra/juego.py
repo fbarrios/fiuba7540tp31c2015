@@ -1,4 +1,5 @@
-import interfaz
+import interfaz_juego
+import interfaz_jugador
 import tablero
 import jugador
 import dados
@@ -48,7 +49,6 @@ def inicializacion(ruta, interfaz):
         listado = listado_cartas.ListadoCartas(personajes, armas, lugares)
         jugador_actual = jugador.Jugador(interfaz.pedir_nombre_jugador(i), 0, listado, dados.Dados(), interfaz) #por ahora los dados son los defaults
         jugadores.append(jugador_actual)
-        interfaz.agregar_jugador(jugador_actual)
     
     return tablero_juego, jugadores, cartas
 
@@ -81,8 +81,12 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
 
 
 def clue(ruta):
-    interfaz_juego = interfaz.Interfaz()
-    tablero, jugadores, cartas = inicializacion(ruta, interfaz_juego)
+    ijuego = interfaz_juego.Interfaz_Juego()
+    ijugador = interfaz_jugador.Interfaz_Jugador()
+    tablero, jugadores, cartas = inicializacion(ruta, ijugador)
+    
+    for jugador in jugadores:
+		ijuego.agregar_jugador(jugador)
     
     personajes, armas, lugares = cartas
     secretas = (random.choice(personajes), random.choice(armas), random.choice(lugares))
@@ -99,7 +103,7 @@ def clue(ruta):
         i = (i + 1) % len(jugadores)
     print secretas
     
-    ganador = jugar(tablero, jugadores, secretas, interfaz_juego)
+    ganador = jugar(tablero, jugadores, secretas, ijuego)
     if ganador is not None:
         interfaz_juego.mostrar_ganador(ganador)
     else:

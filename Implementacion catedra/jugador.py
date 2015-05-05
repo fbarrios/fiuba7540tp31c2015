@@ -1,10 +1,5 @@
 import random
-import interfaz
-
-JUGADOR_SIGUE_JUGANDO = 0
-JUGADOR_GANA = 1
-JUGADOR_PIERDE = 2
-
+import tablero
 
 class Jugador(object):
     def __init__(self, nombre, posicion_inicial, listado_inicial, dados, interfaz):
