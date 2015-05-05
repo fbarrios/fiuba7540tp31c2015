@@ -33,9 +33,6 @@ class Interfaz(object):
         self.personajes = []
         self.armas = []
         self.lugares = []
-        
-    def pedir_cantidad_jugadores(self, minimo, maximo):
-        return pedir_numero(minimo, maximo, "Ingrese la cantidad de jugadores:\n")
     
     def set_personajes(self, personajes):
         self.personajes = personajes[:]
@@ -45,9 +42,6 @@ class Interfaz(object):
     
     def set_lugares(self, lugares):
         self.lugares = lugares[:]
-
-    def pedir_nombre_jugador(self, num_jugador):
-        return raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
     
     def agregar_jugador(self, jugador):
         color = random.choice(self.colores)
@@ -83,18 +77,30 @@ class Interfaz(object):
     
     def mostrar_ganador(self, jugador):
         print jugador.get_nombre(), "HA GANADO!!!!!"
+        
+    def le_toca_a(self, jugador):
+        for jugador_color in self.jugadores:
+            if jugador_color[0] == jugador:
+                print "Es el turno de",jugador_color[1],jugador.get_nombre(),FIN_COLOR
+        
     
+    def mostrar_sin_ganador(self):
+        print "Todos perdieron!!! que malos detectives que son!"
+
+    #Aca comienzan los metodos para pedirle y mostrar cosas al usuario
+        
+    def pedir_cantidad_jugadores(self, minimo, maximo):
+        return pedir_numero(minimo, maximo, "Ingrese la cantidad de jugadores:\n") 
+        
+    def pedir_nombre_jugador(self, num_jugador):
+        return raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
+        
     def pedir_carta_a_mostrar(self, jugador, posibles):
         print jugador.get_nombre(), "Debe elegir entre:"
         for i in range(len(posibles)):
             print i+1, ")" ,posibles[i]
         return posibles[pedir_numero(1, len(posibles), "Ingrese una opcion valida\n") - 1]
-    
-    def le_toca_a(self, jugador):
-        for jugador_color in self.jugadores:
-            if jugador_color[0] == jugador:
-                print "Es el turno de",jugador_color[1],jugador.get_nombre(),FIN_COLOR
-    
+
     def pedir_sentido(self):
         #no valido porque ya fue:
         while True: 
@@ -102,7 +108,7 @@ class Interfaz(object):
             if sentido == "horario": return tablero.HORARIO
             elif sentido == "antihorario": return tablero.ANTIHORARIO
             else: print "Error, ingrese opcion valida"
-    
+
     def quiere_consultar(self, lugar):
         while True:
             si_no = raw_input("Quiere hacer una sugerencia en " + lugar + "?S/N\n")
@@ -149,7 +155,3 @@ class Interfaz(object):
     
     def mostrar_dados(self, resul):
         print "Tiraste un....", resul
-    
-    def mostrar_sin_ganador(self):
-        print "Todos perdieron!!! que malos detectives que son!"
-
