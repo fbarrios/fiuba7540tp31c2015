@@ -1,8 +1,8 @@
-import Interfaz
-import Tablero
-import Jugador
-import Dados
-import ListadoCartas
+import interfaz
+import tablero
+import jugador
+import dados
+import listado_cartas
 import sys
 import random
 
@@ -30,7 +30,7 @@ def cargar_datos(ruta):
 
 def inicializacion(ruta, interfaz):
     cartas, casilleros = cargar_datos(ruta)
-    tablero = Tablero.Tablero(casilleros)
+    tablero_juego = tablero.Tablero(casilleros)
     personajes, armas, lugares = cartas
     
     interfaz.set_personajes(personajes)
@@ -42,12 +42,12 @@ def inicializacion(ruta, interfaz):
     
     jugadores = []
     for i in range(cant_jugadores):
-        listado = ListadoCartas.ListadoCartas(personajes, armas, lugares)
-        jugador = Jugador.Jugador(interfaz.pedir_nombre_jugador(i), 0, listado, Dados.Dados(), interfaz) #por ahora los dados son los defaults
-        jugadores.append(jugador)
-        interfaz.agregar_jugador(jugador)
+        listado = listado_cartas.ListadoCartas(personajes, armas, lugares)
+        jugador_actual = jugador.Jugador(interfaz.pedir_nombre_jugador(i), 0, listado, dados.Dados(), interfaz) #por ahora los dados son los defaults
+        jugadores.append(jugador_actual)
+        interfaz.agregar_jugador(jugador_actual)
     
-    return tablero, jugadores, cartas
+    return tablero_juego, jugadores, cartas
 
 def jugar(tablero, jugadores, cartas_secretas, interfaz):   
     interfaz.dibujar_tablero(tablero)
@@ -76,8 +76,8 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
         jugadores.append(jugador_toca)
 
 def clue(ruta):
-    interfaz = Interfaz.Interfaz()
-    tablero, jugadores, cartas = inicializacion(ruta, interfaz)
+    interfaz_juego = interfaz.Interfaz()
+    tablero, jugadores, cartas = inicializacion(ruta, interfaz_juego)
     
     personajes, armas, lugares = cartas
     secretas = (random.choice(personajes), random.choice(armas), random.choice(lugares))
@@ -94,11 +94,11 @@ def clue(ruta):
         i = (i + 1) % len(jugadores)
     print secretas
     
-    ganador = jugar(tablero, jugadores, secretas, interfaz)
+    ganador = jugar(tablero, jugadores, secretas, interfaz_juego)
     if ganador is not None:
-        interfaz.mostrar_ganador(ganador)
+        interfaz_juego.mostrar_ganador(ganador)
     else:
-        interfaz.mostrar_sin_ganador()
+        interfaz_juego.mostrar_sin_ganador()
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:

@@ -1,5 +1,5 @@
 import random
-import Interfaz
+import interfaz
 
 JUGADOR_SIGUE_JUGANDO = 0
 JUGADOR_GANA = 1

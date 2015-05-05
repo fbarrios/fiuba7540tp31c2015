@@ -1,5 +1,5 @@
 import random
-import Tablero
+import tablero
 COLORES = ['\033[95m', '\033[94m', '\033[93m', '\033[92m', '\033[91m', '\033[90m']
 
 FIN_COLOR = '\033[0m'
@@ -96,8 +96,8 @@ class Interfaz(object):
         #no valido porque ya fue:
         while True: 
             sentido = raw_input("Sentido horario o antihorario?\n")
-            if sentido == "horario": return Tablero.HORARIO
-            elif sentido == "antihorario": return Tablero.ANTIHORARIO
+            if sentido == "horario": return tablero.HORARIO
+            elif sentido == "antihorario": return tablero.ANTIHORARIO
             else: print "Error, ingrese opcion valida"
     
     def quiere_consultar(self, lugar):
