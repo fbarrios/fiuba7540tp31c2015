@@ -4,6 +4,7 @@ COLORES = ['\033[95m', '\033[94m', '\033[93m', '\033[92m', '\033[91m', '\033[90m
 
 FIN_COLOR = '\033[0m'
 
+
 def pedir_numero(minimo, maximo, mensaje):
     while True:
         valor = raw_input(mensaje)
@@ -16,13 +17,15 @@ def pedir_numero(minimo, maximo, mensaje):
         else:
             print "Error, debe ingresar un valor entre", minimo, "y", maximo
 
-def pedir_carta (posibilidades, tipo):
+
+def pedir_carta(posibilidades, tipo):
     while True:
         valor = raw_input("Ingrese " + tipo + "\n")
         if valor in posibilidades:
             return valor
         print "Error, ingrese un " + tipo + " valida"
-        
+
+
 class Interfaz(object):
     def __init__(self):
         self.jugadores = []
@@ -149,4 +152,4 @@ class Interfaz(object):
     
     def mostrar_sin_ganador(self):
         print "Todos perdieron!!! que malos detectives que son!"
-        
+

@@ -11,9 +11,11 @@ MINIMA_CANTIDAD_JUGADORES = 3
 MIN_CARTAS_POR_JUGADOR = 5
 LIBRE = "libre"
 
+
 def obtener_de_archivo(archivo):
     linea = archivo.readline().rstrip()
     return linea.split(": ")[1].split(", ")
+
 
 def cargar_datos(ruta):
     arch = open(ruta)
@@ -27,6 +29,7 @@ def cargar_datos(ruta):
         if lugar not in casilleros:
             raise ValueError("lugares inaccesibles")
     return (personajes, armas, lugares), casilleros
+
 
 def inicializacion(ruta, interfaz):
     cartas, casilleros = cargar_datos(ruta)
@@ -48,6 +51,7 @@ def inicializacion(ruta, interfaz):
         interfaz.agregar_jugador(jugador_actual)
     
     return tablero_juego, jugadores, cartas
+
 
 def jugar(tablero, jugadores, cartas_secretas, interfaz):   
     interfaz.dibujar_tablero(tablero)
@@ -75,6 +79,7 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
                 perdedores.append(jugador_toca)
         jugadores.append(jugador_toca)
 
+
 def clue(ruta):
     interfaz_juego = interfaz.Interfaz()
     tablero, jugadores, cartas = inicializacion(ruta, interfaz_juego)
@@ -99,6 +104,7 @@ def clue(ruta):
         interfaz_juego.mostrar_ganador(ganador)
     else:
         interfaz_juego.mostrar_sin_ganador()
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:

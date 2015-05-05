@@ -1,6 +1,7 @@
 HORARIO = 0
 ANTIHORARIO = 1
 
+
 class Tablero(object):
     def __init__(self, casilleros):
         self.casilleros = casilleros

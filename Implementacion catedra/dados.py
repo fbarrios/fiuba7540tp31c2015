@@ -11,6 +11,7 @@ def resultado_dado(probabilidades):
         value += 1
     return value
 
+
 class Dados(object):
     def __init__(self, probabilidades = (DEFAULTS, DEFAULTS)):
         self.dados = probabilidades

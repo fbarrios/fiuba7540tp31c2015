@@ -1,5 +1,6 @@
 import os
 
+
 class ListadoCartas(object):
     def __init__(self, personajes_inicial, armas_inicial, lugares_inicial):
         self.personajes = personajes_inicial[:]
