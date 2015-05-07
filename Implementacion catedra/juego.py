@@ -101,7 +101,6 @@ def clue(ruta):
     while len(cartas_restantes) > 0:
         jugadores[i].asignar_carta(cartas_restantes.pop())
         i = (i + 1) % len(jugadores)
-    print secretas
     
     ganador = jugar(tablero, jugadores, secretas, ijuego)
     if ganador is not None:
