@@ -83,10 +83,13 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
 def clue(ruta):
     ijuego = interfaz_juego.Interfaz_Juego()
     ijugador = interfaz_jugador.Interfaz_Jugador()
-    tablero, jugadores, cartas = inicializacion(ruta, ijugador)
+    try:
+        tablero, jugadores, cartas = inicializacion(ruta, ijugador)
+    except IOError:
+        raise IOError("El archivo de configuracion del tablero no existe!!")
     
     for jugador in jugadores:
-		ijuego.agregar_jugador(jugador)
+        ijuego.agregar_jugador(jugador)
     
     personajes, armas, lugares = cartas
     secretas = (random.choice(personajes), random.choice(armas), random.choice(lugares))
@@ -101,7 +104,7 @@ def clue(ruta):
     while len(cartas_restantes) > 0:
         jugadores[i].asignar_carta(cartas_restantes.pop())
         i = (i + 1) % len(jugadores)
-    print secretas
+    
     ganador = jugar(tablero, jugadores, secretas, ijuego)
     if ganador is not None:
         ijuego.mostrar_ganador(ganador)
