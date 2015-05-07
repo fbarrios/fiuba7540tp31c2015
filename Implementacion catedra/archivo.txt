@@ -1,4 +1,4 @@
 casilleros: libre, libre, libre, libre, Terraza, Terraza, libre, libre, Andamio, Andamio, Andamio, Andamio, libre, libre, libre, libre, libre, Laboratorio F, Laboratorio F, libre, libre, libre, Salon del CD, Salon del CD, Salon del CD, Aula 400, Aula 400, libre, libre, libre, Aula 203, Aula 203, libre, libre, libre, libre, E9, libre, E9, libre, libre, libre, libre, Gabinete de la SEUBE, Gabinete de la SEUBE, Plaza frente a la FIUBA, Plaza frente a la FIUBA, libre
 personajes: Coronel E. Barbara, Christian Grace, Haskell Martinez, Ing. Alan Informacion, Sra. Rosada, Yisus S.
-armas: Matafuegos vencido, Proyector quemado, Osciloscopio, Integrales Triples, Paty del puestito.
+armas: Matafuegos vencido, Proyector quemado, Osciloscopio, Integrales Triples, Paty del puestito
 lugares: Laboratorio F, Aula 400, Aula 203, Andamio, Terraza, E9, Gabinete de la SEUBE, Plaza frente a la FIUBA, Salon del CD

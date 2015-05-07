@@ -2,34 +2,41 @@ import random
 import tablero
 
 class Jugador(object):
-    def __init__(self, nombre, posicion_inicial, listado_inicial, dados, interfaz):
+    def __init__(self, nombre, posicion_inicial, listado_inicial, dados, pedidos):
+        '''Recibe su nombre, una posicion inicial, un listado ya inicializado, los dados a usar
+        y alguien que le permita hacerle pedidos al usuario, de la manera que correzponda.'''
         self.posicion = posicion_inicial
         self.listado = listado_inicial
         self.mano = []
         self.dados = dados
-        self.interfaz = interfaz
+        self.pedidos = pedidos
         self.nombre = nombre
     
     def get_nombre(self):
+        '''Devuelve el nombre del jugador'''
         return self.nombre
         
     def __eq___(self, otro):
+        '''Verifica si un jugador es igual a otro jugador. Dos jugadores son iguales
+        cuando tienen el mismo nombre'''
         return self.nombre == otro.nombre
     
     def asignar_carta(self, carta):
+        '''Se le asigna una carta a la mano del jugador. Este la marca como vista en su listado
+        de cartas.'''
         self.mano.append(carta)
         self.listado.sacar_carta(carta)
     
-    def __hash__(self):
-        return __hash__(self.nombre)
-    
     def get_posicion(self):
+        '''Obtiene la posicion del jugador.'''
         return self.posicion
     
-    def get_mano(self): #ver si esto lo hacemos de otra manera
-        return self.mano
-    
     def alguna_carta(self, jugada):
+        '''Se fija si el jugador tiene alguna de las cartas indicadas en la jugada.
+        Parametros:
+            - jugada: iterable con cartas.
+        Salida: si tiene al menos una de las cartas, debe preguntarle al usuario cual
+        prefiere mostrarle. Si no tiene ninguna, devuelve None.'''
         eleccion = []
         for carta in jugada:
             if carta in self.mano:
@@ -37,36 +44,42 @@ class Jugador(object):
         if len(eleccion) == 0:
             return None
         else:
-            return self.interfaz.pedir_carta_a_mostrar(self, eleccion)
+            return self.pedidos.pedir_carta_a_mostrar(self, eleccion)
     
     def jugarsela(self):
-        se_la_juega = self.interfaz.preguntar_arriesgo()
+        '''Devuelve arriesgo del usuario (personaje, arma, jugador), o None si no desea arriesgarse.'''
+        se_la_juega = self.pedidos.preguntar_arriesgo()
         return se_la_juega
     
-    def mover(self, tablero):       
+    def mover(self, tablero):
+        '''Lanza los dados y se mueve en algun sentido por el tablero'''
         lanzado = self.dados.lanzar()
-        self.interfaz.mostrar_dados(lanzado)
-        horario = self.interfaz.pedir_sentido()
+        self.pedidos.mostrar_dados(lanzado)
+        horario = self.pedidos.pedir_sentido()
         self.posicion = tablero.siguiente(self.posicion, lanzado, horario)
     
     def sugerir(self, tablero, otros_jugadores):
+        '''Si esta en algun lugar para hacer sugerencias, le pregunta al usuario si desea hacer una.
+        En caso afirmativo, le muestra la mano al jugador, le muestra el listado de cartas que aun no vio, 
+        le pide la jugada, y le consulta al resto de los jugadores si tiene alguna
+        de las cartas.
+        Parametros:
+            - tablero: tablero del juego.
+            - otros_jugadores: un iterable con los demas jugadores, en el orden en el que se les debe consultar.'''
         lugar = tablero[self.posicion]
-        if lugar is None or not self.interfaz.quiere_consultar(lugar):
+        if lugar is None or not self.pedidos.quiere_consultar(lugar):
             return
-        self.interfaz.mostrar_mano(self.get_mano())
-        self.interfaz.mostrar_listado(self.get_listado_str())
+        self.pedidos.mostrar_mano(self.mano)
+        self.pedidos.mostrar_listado(self.listado)
         
-        personaje = self.interfaz.pedir_personaje()
-        arma = self.interfaz.pedir_arma()
+        personaje = self.pedidos.pedir_personaje()
+        arma = self.pedidos.pedir_arma()
         
         for jugador in otros_jugadores:
             carta = jugador.alguna_carta( (personaje, arma, lugar) )
             if carta is not None:
-                self.interfaz.mostrar_carta(jugador, carta)
+                self.pedidos.mostrar_carta(jugador, carta)
                 self.listado.sacar_carta(carta)
                 return
-        self.interfaz.mostrar_no_hay_cartas()
-        
-    def get_listado_str(self):
-        return str(self.listado)
+        self.pedidos.mostrar_no_hay_cartas()
 
