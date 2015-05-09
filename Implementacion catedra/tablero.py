@@ -55,5 +55,7 @@ class Tablero(object):
         '''Obtiene la cantidad de casilleros del tablero.'''
         return len(self.casilleros)
     
-    def posicion_de_casillero(self, pos):
-		return self.posiciones[pos]
+    def posicion_de_casillero(self, casillero):
+        '''Devuelve una tupla (posicion X, posicion Y) con las posiciones en el mapa
+        del casillero recibido por parametro.'''
+        return self.posiciones[casillero]
