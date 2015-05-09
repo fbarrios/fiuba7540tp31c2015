@@ -1,6 +1,8 @@
 import tablero
+import dados
 
 VER_POSIBILIDADES = "*"
+DADO_ESTADAR = "*"
 
 def pedir_numero(minimo, maximo, mensaje):
     '''Obtiene un numero del usuario, entre los valores minimos y maximos.'''
@@ -54,6 +56,22 @@ class InterfazJugador(object):
     def pedir_nombre_jugador(self, num_jugador):
         '''Le pide al usuario el nombre de un jugador'''
         return raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
+    
+    def pedir_dados(self, jugador, max_dados, max_caras_dados):
+        '''Obtiene los dados del que debera tener el jugador indicado.'''
+        cantidad = pedir_numero(1, max_dados, "Ingrese la cantidad de dados que tendra el jugador " + jugador + "\n")
+        probabilidades = []
+        for i in range(cantidad):
+            caras = pedir_numero(1, max_caras_dados, "Ingrese la cantidad de caras que tendra el dado " + str(i+1) + "\n")
+            print "Que tipo de dado es?"
+            print "1) Estandar (todas las caras equiprobables)"
+            print "2) Creciente lineal"
+            print "3) Decreciente lineal"
+            print "4) Triangular"
+            tipo_dado = pedir_numero(1, len(dados.GENERADORES), "Ingrese opcion valida de dado\n")
+            generado = dados.GENERADORES[tipo_dado - 1](caras)
+            probabilidades.append(generado)
+        return dados.Dados(probabilidades)
         
     def pedir_carta_a_mostrar(self, jugador, posibles):
         '''Le pide al jugador que elija entre todas las cartas posibles, para mostrarselas a otro jugador.'''
