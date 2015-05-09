@@ -51,7 +51,7 @@ class InterfazJugador(object):
 
     def pedir_cantidad_jugadores(self, minimo, maximo):
         '''Le pide al usuario la cantidad de jugadores que van a jugar'''
-        return pedir_numero(1, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n") 
+        return pedir_numero(minimo, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n") 
         
     def pedir_nombre_jugador(self, num_jugador):
         '''Le pide al usuario el nombre de un jugador'''
