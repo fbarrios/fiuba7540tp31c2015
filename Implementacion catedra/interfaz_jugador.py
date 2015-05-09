@@ -51,7 +51,7 @@ class InterfazJugador(object):
 
     def pedir_cantidad_jugadores(self, minimo, maximo):
         '''Le pide al usuario la cantidad de jugadores que van a jugar'''
-        return pedir_numero(minimo, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n") 
+        return pedir_numero(1, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n") 
         
     def pedir_nombre_jugador(self, num_jugador):
         '''Le pide al usuario el nombre de un jugador'''
@@ -65,8 +65,8 @@ class InterfazJugador(object):
             caras = pedir_numero(1, max_caras_dados, "Ingrese la cantidad de caras que tendra el dado " + str(i+1) + "\n")
             print "Que tipo de dado es?"
             print "1) Estandar (todas las caras equiprobables)"
-            print "2) Creciente lineal"
-            print "3) Decreciente lineal"
+            print "2) Creciente"
+            print "3) Decreciente"
             print "4) Triangular"
             tipo_dado = pedir_numero(1, len(dados.GENERADORES), "Ingrese opcion valida de dado\n")
             generado = dados.GENERADORES[tipo_dado - 1](caras)

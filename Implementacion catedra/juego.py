@@ -23,9 +23,10 @@ def cargar_datos(ruta):
     '''Obtiene las configuraciones del archivo de configuracion del tablero y cartas.
     Parametros:
         - ruta: ruta del archivo.
-    Salida: tupla con las cartas (una tupla (personajes, armas, lugares)) y una lista de casilleros.'''
+    Salida: tupla con las cartas (una tupla (personajes, armas, lugares)),  una lista de casilleros y una lista con posiciones (para visualizar en el tablero).'''
     arch = open(ruta)
     casilleros = [casillero if casillero.lower() != LIBRE else None for casillero in obtener_de_archivo(arch)]
+    posiciones = [(int(pos.split("-")[0]), int(pos.split("-")[1])) for pos in obtener_de_archivo(arch)]
     personajes = obtener_de_archivo(arch)
     armas = obtener_de_archivo(arch)
     lugares = obtener_de_archivo(arch)
@@ -34,13 +35,13 @@ def cargar_datos(ruta):
     for lugar in lugares:
         if lugar not in casilleros:
             raise ValueError("lugares inaccesibles")
-    return (personajes, armas, lugares), casilleros
+    return (personajes, armas, lugares), casilleros, posiciones
 
 
 def inicializacion(ruta, interfaz):
     '''Inicializa el juego, creando el tablero, cargando las cartas, cargando los nuevos jugadores.'''
-    cartas, casilleros = cargar_datos(ruta)
-    tablero_juego = tablero.Tablero(casilleros)
+    cartas, casilleros, posiciones = cargar_datos(ruta)
+    tablero_juego = tablero.Tablero(casilleros, posiciones)
     personajes, armas, lugares = cartas
     
     interfaz.set_personajes(personajes)
