@@ -81,8 +81,8 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
 
 
 def clue(ruta):
-    ijuego = interfaz_juego.Interfaz_Juego()
-    ijugador = interfaz_jugador.Interfaz_Jugador()
+    ijuego = interfaz_juego.InterfazJuego()
+    ijugador = interfaz_jugador.InterfazJugador()
     try:
         tablero, jugadores, cartas = inicializacion(ruta, ijugador)
     except IOError:
