@@ -3,6 +3,8 @@ ANTIHORARIO = 1
 
 
 class Tablero(object):
+    '''Representa un tablero circular de un juego con casilleros, en los cuales
+    pueden haber lugares vacios, o con lugares en especial.'''
     def __init__(self, casilleros):
         '''Recibe una lista de casilleros. Cada casillero debe contener una cadena
         con el contenido del casillero, en la posicion indicada, o None si no hay nada.'''

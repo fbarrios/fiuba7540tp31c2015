@@ -7,6 +7,8 @@ COLOR = 1
 JUGADOR = 0
 
 class InterfazJuego(object):
+    '''Abstrae la interfaz del juego. Permite pedirle cosas a un usuario sobre el juego, y a su vez permite 
+    cambiar la forma en las que esto se hace.'''
     def __init__(self):
         self.jugadores = []
         self.colores = COLORES[:]

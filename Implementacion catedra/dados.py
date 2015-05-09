@@ -12,6 +12,7 @@ def resultado_dado(probabilidades):
 
 
 class Dados(object):
+    '''Representa un conjunto de dados que, dadas la cantidad de caras y probabilidades de cada uno de estas, permite lanzarlos.'''
     def __init__(self, prob_dados = (DEFAULTS, DEFAULTS)):
         '''Recibe un iterable con las probabilidades de cada resultado del dado (empezando por 1).
         Parametros:

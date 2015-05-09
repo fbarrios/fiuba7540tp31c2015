@@ -2,6 +2,7 @@ import random
 import tablero
 
 class Jugador(object):
+    '''Representa a un jugador manejado por un usuario'''
     def __init__(self, nombre, posicion_inicial, listado_inicial, dados, pedidos):
         '''Recibe su nombre, una posicion inicial, un listado ya inicializado, los dados a usar
         y alguien que le permita hacerle pedidos al usuario, de la manera que correzponda.'''

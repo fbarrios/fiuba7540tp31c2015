@@ -29,6 +29,7 @@ def pedir_carta(posibilidades, tipo):
             print "Error, ingrese un " + tipo + " valida"
 
 class InterfazJugador(object):
+    '''Abstae la interfaz hacia el usuario, para pedirle cosas respecto a un determinado jugador, manejado por dicho usuario.'''
     def __init__(self):
         self.armas = []
         self.lugares = []
