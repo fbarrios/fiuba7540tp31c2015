@@ -14,11 +14,15 @@ LIBRE = "libre"
 
 
 def obtener_de_archivo(archivo):
+	'''Obtiene una lista con todos los parametros indicados en la siguiente linea del archivo.'''
     linea = archivo.readline().rstrip()
     return linea.split(": ")[1].split(", ")
 
-
 def cargar_datos(ruta):
+	'''Obtiene las configuraciones del archivo de configuracion del tablero y cartas.
+	Parametros:
+		- ruta: ruta del archivo.
+	Salida: tupla con las cartas (una tupla (personajes, armas, lugares)) y una lista de casilleros.'''
     arch = open(ruta)
     casilleros = [casillero if casillero.lower() != LIBRE else None for casillero in obtener_de_archivo(arch)]
     personajes = obtener_de_archivo(arch)
@@ -33,6 +37,7 @@ def cargar_datos(ruta):
 
 
 def inicializacion(ruta, interfaz):
+	'''Inicializa el juego, creando el tablero, cargando las cartas, cargando los nuevos jugadores.'''
     cartas, casilleros = cargar_datos(ruta)
     tablero_juego = tablero.Tablero(casilleros)
     personajes, armas, lugares = cartas
@@ -53,7 +58,14 @@ def inicializacion(ruta, interfaz):
     return tablero_juego, jugadores, cartas
 
 
-def jugar(tablero, jugadores, cartas_secretas, interfaz):   
+def jugar(tablero, jugadores, cartas_secretas, interfaz):
+	'''Loop principal del juego. Se juega hasta que alguien haya ganado, o TODOS hayan perdido.
+	Parametros:
+		- tablero: Tablero del juego.
+		- Jugadores: lista de jugadores, ordenada segun vaya la ronda.
+		- cartas_secretas: tupla con las cartas secretas con el formato (personaje, arma, lugar)
+		- interfaz: interfaz del juego, para mostrarle el tablero al usuario, y a quien le va tocando o perdiendo.
+	Salida: el jugador que ha ganado, o None si todos han perdido'''
     interfaz.dibujar_tablero(tablero)
     perdedores = []
     while True:
@@ -81,6 +93,9 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
 
 
 def clue(ruta):
+	'''Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadres, luego 
+	selecciona las cartas secretas, mezcla y asigna el resto a los jugadores. Empieza el juego, 
+	y al terminar avisa si hubo ganador o todos perdieron.'''
     ijuego = interfaz_juego.InterfazJuego()
     ijugador = interfaz_jugador.InterfazJugador()
     try:
