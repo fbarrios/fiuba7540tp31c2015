@@ -28,7 +28,7 @@ def pedir_carta(posibilidades, tipo):
         else:
             print "Error, ingrese un " + tipo + " valida"
 
-class Interfaz_Jugador(object):
+class InterfazJugador(object):
     def __init__(self):
         self.armas = []
         self.lugares = []

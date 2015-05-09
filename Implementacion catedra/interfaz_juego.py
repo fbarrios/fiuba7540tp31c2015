@@ -6,7 +6,7 @@ FIN_COLOR = '\033[0m'
 COLOR = 1
 JUGADOR = 0
 
-class Interfaz_Juego(object):
+class InterfazJuego(object):
     def __init__(self):
         self.jugadores = []
         self.colores = COLORES[:]
