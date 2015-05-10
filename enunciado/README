@@ -1,0 +1,14 @@
+para generar el enunciado:
+
+Necesitan pandoc:
+    sudo apt-get install pandoc
+    
+Y corren:
+    
+    pandoc -f markdown -t latex tp3.md -s -o tp3.tex
+    
+para generar el .tex.
+
+Y generan el pdf como siempre:
+
+    pdflatex tp3.tex
