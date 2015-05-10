@@ -24,7 +24,7 @@ class InterfazJuego(object):
         pygame.display.set_caption("Clue!")
         self.background_image = pygame.image.load(FONDO_PANTALLA)
         COLORES_PANTALLA = [(pygame.image.load('imagenes/greenplayer.png').convert_alpha(), '\033[92m'), (pygame.image.load('imagenes/blueplayer.png').convert_alpha(), '\033[94m'), (pygame.image.load('imagenes/redplayer.png').convert_alpha(), '\033[91m'), (pygame.image.load('imagenes/yellowplayer.png').convert_alpha(), '\033[93m'), (pygame.image.load('imagenes/pinkplayer.png').convert_alpha(),'\033[95m'), (pygame.image.load('imagenes/greyplayer.png').convert_alpha(), '\033[90m')]
-        self.colores = COLORES_PANTALLA
+        self.colores = COLORES_PANTALLA[:]
       
     def agregar_jugador(self, jugador):
         '''Se agrega un jugador, y se le asigna un color de forma aleatoria'''
