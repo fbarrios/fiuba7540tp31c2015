@@ -1,6 +1,7 @@
 import random
 import tablero
 import pygame
+import sys
 from pygame.locals import *
 
 FIN_COLOR = '\033[0m'
@@ -11,7 +12,7 @@ COLOR_SHELL = 1
 
 ANCHO_PANTALLA = 660
 ALTO_PANTALLA = 510
-FONDO_PANTALLA = 'imagenes/board3.png'
+FONDO_PANTALLA = 'imagenes/board.png'
 pygame.init()
 
 def load_image(filename, transparent=False):
@@ -31,8 +32,8 @@ class InterfazJuego(object):
         self.jugadores = []
         self.pantalla = pygame.display.set_mode((ANCHO_PANTALLA, ALTO_PANTALLA))
         pygame.display.set_caption("Clue!")
-        self.background_image = load_image(FONDO_PANTALLA)
-        COLORES_PANTALLA = [(load_image('imagenes/greenplayer.png'), '\033[92m'), (load_image('imagenes/blueplayer.png'), '\033[94m'), (load_image('imagenes/redplayer.png'), '\033[91m'), (load_image('imagenes/yellowplayer.png'), '\033[93m'), (load_image('imagenes/pinkplayer.png'),'\033[95m'), (load_image('imagenes/greyplayer.png'), '\033[90m')]
+        self.background_image = pygame.image.load(FONDO_PANTALLA)
+        COLORES_PANTALLA = [(pygame.image.load('imagenes/greenplayer.png').convert_alpha(), '\033[92m'), (pygame.image.load('imagenes/blueplayer.png').convert_alpha(), '\033[94m'), (pygame.image.load('imagenes/redplayer.png').convert_alpha(), '\033[91m'), (pygame.image.load('imagenes/yellowplayer.png').convert_alpha(), '\033[93m'), (pygame.image.load('imagenes/pinkplayer.png').convert_alpha(),'\033[95m'), (pygame.image.load('imagenes/greyplayer.png').convert_alpha(), '\033[90m')]
         self.colores = COLORES_PANTALLA
       
     def agregar_jugador(self, jugador):
@@ -43,8 +44,11 @@ class InterfazJuego(object):
     
     def dibujar_tablero(self, tablero):
         '''Dibuja el tablero, con los jugadores (solo el primero de todos los que ocupen la misma posicion)'''
+        for eventos in pygame.event.get():
+            if eventos.type == QUIT:
+                sys.exit(0)
         self.pantalla.blit(self.background_image, (0, 0))
-        for jugador_color in self.jugadores:
+        for jugador_color in self.jugadores[::-1]:
             posicion = jugador_color[JUGADOR].get_posicion()
             self.pantalla.blit(jugador_color[COLORES][COLOR_PANTALLA], tablero.posicion_de_casillero(posicion))
         pygame.display.flip()
