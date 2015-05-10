@@ -15,16 +15,6 @@ ALTO_PANTALLA = 510
 FONDO_PANTALLA = 'imagenes/board.png'
 pygame.init()
 
-def load_image(filename, transparent=False):
-    try: image = pygame.image.load(filename)
-    except pygame.error, message:
-            raise SystemExit, message
-    image = image.convert()
-    if transparent:
-            color = image.get_at((0,0))
-            image.set_colorkey(color, RLEACCEL)
-    return image
-
 class InterfazJuego(object):
     '''Abstrae la interfaz del juego. Permite pedirle cosas a un usuario sobre el juego, y a su vez permite 
     cambiar la forma en las que esto se hace.'''
