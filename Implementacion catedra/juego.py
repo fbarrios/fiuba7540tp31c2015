@@ -6,7 +6,7 @@ import listado_cartas
 import sys
 import random
 
-ARCHIVO_DEFAULT = "archivo.txt"
+ARCHIVO_DEFAULT = "configuraciones.txt"
 MINIMA_CANTIDAD_JUGADORES = 3
 MIN_CARTAS_POR_JUGADOR = 5
 LIBRE = "libre"
