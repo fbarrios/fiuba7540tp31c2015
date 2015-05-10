@@ -2,7 +2,9 @@ import random
 import tablero
 
 class Jugador(object):
-    '''Representa a un jugador manejado por un usuario'''
+    '''Representa a un jugador manejado por un usuario. Todo el manejo para pedirle y mostrarle cosas al usuario
+    se hace utilizando su atributo "pedidos" que se encarga de dichas tareas. En este modulo no puede haber ninguna
+    funcion raw_input ni print, ni ninguna semejante.'''
     def __init__(self, nombre, posicion_inicial, listado_inicial, dados, pedidos):
         '''Recibe su nombre, una posicion inicial, un listado ya inicializado, los dados a usar
         y alguien que le permita hacerle pedidos al usuario, de la manera que correzponda.'''
@@ -53,11 +55,12 @@ class Jugador(object):
         return se_la_juega
     
     def mover(self, tablero):
-        '''Lanza los dados y se mueve en algun sentido por el tablero'''
-        lanzado = self.dados.lanzar()
-        self.pedidos.mostrar_dados(lanzado)
+        '''Lanza los dados y se mueve en algun sentido por el tablero. Le muestra al usuario el resultado de
+        haber lanzado los dados, y le pide el sentido en el que debe moverse.'''
+        lanzamientos = [dado.lanzar() for dado in self.dados]
+        self.pedidos.mostrar_dados(lanzamientos)
         horario = self.pedidos.pedir_sentido()
-        self.posicion = tablero.siguiente(self.posicion, lanzado, horario)
+        self.posicion = tablero.siguiente(self.posicion, sum(lanzamientos), horario)
     
     def sugerir(self, tablero, otros_jugadores):
         '''Si esta en algun lugar para hacer sugerencias, le pregunta al usuario si desea hacer una.

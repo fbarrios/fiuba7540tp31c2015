@@ -1,5 +1,4 @@
-import interfaz_juego
-import interfaz_jugador
+import interfaces
 import tablero
 import jugador
 import dados
@@ -99,15 +98,15 @@ def clue(ruta):
     '''Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadres, luego 
     selecciona las cartas secretas, mezcla y asigna el resto a los jugadores. Empieza el juego, 
     y al terminar avisa si hubo ganador o todos perdieron.'''
-    ijuego = interfaz_juego.InterfazJuego()
-    ijugador = interfaz_jugador.InterfazJugador()
+    interfaz_juego = interfaces.InterfazJuego()
+    interfaz_jugador = interfaces.InterfazJugador()
     try:
-        tablero, jugadores, cartas = inicializacion(ruta, ijugador)
+        tablero, jugadores, cartas = inicializacion(ruta, interfaz_jugador)
     except IOError:
         raise IOError("El archivo de configuracion del tablero no existe!!")
     
     for jugador in jugadores:
-        ijuego.agregar_jugador(jugador)
+        interfaz_juego.agregar_jugador(jugador)
     
     personajes, armas, lugares = cartas
     secretas = (random.choice(personajes), random.choice(armas), random.choice(lugares))
@@ -123,11 +122,11 @@ def clue(ruta):
         jugadores[i].asignar_carta(cartas_restantes.pop())
         i = (i + 1) % len(jugadores)
     
-    ganador = jugar(tablero, jugadores, secretas, ijuego)
+    ganador = jugar(tablero, jugadores, secretas, interfaz_juego)
     if ganador is not None:
-        ijuego.mostrar_ganador(ganador)
+        interfaz_juego.mostrar_ganador(ganador)
     else:
-        ijuego.mostrar_sin_ganador()
+        interfaz_juego.mostrar_sin_ganador()
 
 
 if __name__ == "__main__":
