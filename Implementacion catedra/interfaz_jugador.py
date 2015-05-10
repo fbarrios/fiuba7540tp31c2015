@@ -57,11 +57,11 @@ class InterfazJugador(object):
     def pedir_nombre_jugador(self, num_jugador):
         '''Le pide al usuario el nombre de un jugador. No se permite ingresar un nombre que ya fuere ingresado'''
         while True:
-            nombre raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
+            nombre = raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
             if nombre in self.nombres:
                 print "Error, ya fue ingresado ese nombre"
                 continue
-            nombres.append(nombre)
+            self.nombres.append(nombre)
             return nombre
     
     def pedir_dados(self, jugador, max_dados, max_caras_dados):
