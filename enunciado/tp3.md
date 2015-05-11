@@ -42,7 +42,7 @@ Un plantel de selectos decidió que los sospechosos a investigar son:
    tener intereses políticos para perpetuarlo en su rol de no hacer nada.
    
 Se decidió que la situación es una excelente oportunidad para ser modelada como
-una versión del famoso juego Clue[^1].
+una versión del famoso juego Clue [^1].
 
 Previendo que nadie va a tener dinero como para comprar la versión de mesa, 
 se le solicitó a un grupo muy prestigioso de programadores que realicen el diseño y 
@@ -61,21 +61,29 @@ finalizarlo no debería ser una tarea tan laboriosa.
  [^1]: http://en.wikipedia.org/wiki/Cluedo#Games
 
 
-
 2. Consigna
 ========
 
-Se pide implementar una variación del juego Clue.
+Se pide implementar una variación del juego Clue. 
 
-Se entregan ya desarrollada e implementada parte de la funcionalidad
-basica del programa. Esto incluye una interfaz gráfica, las funciones principales 
+Se entrega ya desarrollada e implementada parte de la funcionalidad
+básica del programa. Esto incluye una interfaz gráfica, las funciones principales 
 del ciclo principal y una especificación de la interfaz de comunicación
 entre los objetos del juego.
+
+Para ejecutar la interfaz gráfica, se deberá tener instalado el paquete
+PyGame:
+
+- En sistemas operativos Linux, ejecutar: `sudo apt-get install python-pygame`.
+- En sistemas operativos Windows, descargar el instalador desde el sitio web
+de PyGame [^2].
+
 
 El alumno deberá completar las funciones faltantes, respetando las especificaciones 
 que se encuentran en el código fuente.
 
-\newpage
+[^2]: http://www.pygame.org/download.shtml
+
 
 3. Criterios de aprobación
 =======================
