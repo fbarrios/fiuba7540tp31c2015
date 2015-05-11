@@ -1,7 +1,6 @@
 import interfaces
 import tablero
 import jugador
-import dados
 import listado_cartas
 import sys
 import random
@@ -13,10 +12,12 @@ LIBRE = "libre"
 MAX_DADOS = 5
 MAX_CARAS = 10
 
+
 def obtener_de_archivo(archivo):
     '''Obtiene una lista con todos los parametros indicados en la siguiente linea del archivo.'''
     linea = archivo.readline().rstrip()
     return linea.split(": ")[1].split(", ")
+
 
 def cargar_datos(ruta):
     '''Obtiene las configuraciones del archivo de configuracion del tablero y cartas.

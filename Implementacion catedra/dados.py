@@ -1,6 +1,7 @@
 import random
 STADARD = (1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6)  
 
+
 class Dado(object):
     '''Representa un conjunto de dados que, dadas la cantidad de caras y probabilidades de cada uno de estas, permite lanzarlos.'''
     def __init__(self, prob_dados = STADARD):
@@ -24,9 +25,11 @@ class Dado(object):
             value += 1
         return value
 
+
 def dado_standard(cant_caras):
     '''Devuelve una lista con las probabilidades de cada cara de un dado estandard (todas las caras equiprobables)'''
     return Dado([1.0 / cant_caras for i in range(cant_caras)])
+
 
 def dado_creciente(cant_caras):
     '''Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras de mayor numero tienen mayor probabilidad
@@ -34,12 +37,14 @@ def dado_creciente(cant_caras):
     suma = cant_caras * (cant_caras + 1) / 2
     return Dado([ (i + 1) * 1.0 / suma for i in range(cant_caras)])
 
+
 def dado_decreciente(cant_caras):
     '''Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras de menor numero tienen mayor probabilidad
     (probabilidad decreciente).'''
     dado = dado_creciente(cant_caras)
     dado.probabilidades[::-1]
     return dado
+
 
 def dado_triangular(cant_caras):
     '''Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras cercanas al valor medio tienen mayor probabilidad,
@@ -49,5 +54,6 @@ def dado_triangular(cant_caras):
     triangulo = [(suma - abs(i - media)) for i in range(cant_caras)]
     triangulo_normalizado = [ 1.0 * elemento / sum(triangulo) for elemento in triangulo]
     return Dado(triangulo_normalizado)
+
 
 GENERADORES = [dado_standard, dado_creciente, dado_decreciente, dado_triangular]

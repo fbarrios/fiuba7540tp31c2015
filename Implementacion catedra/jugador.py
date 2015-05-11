@@ -1,6 +1,7 @@
 import random
 import tablero
 
+
 class Jugador(object):
     '''Representa a un jugador manejado por un usuario. Todo el manejo para pedirle y mostrarle cosas al usuario
     se hace utilizando su atributo "pedidos" que se encarga de dichas tareas. En este modulo no puede haber ninguna
