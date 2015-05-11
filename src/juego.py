@@ -1,4 +1,5 @@
-import interfaces
+from interfaz_juego import InterfazJuego
+from interfaz_jugador import InterfazJugador
 import tablero
 import jugador
 import listado_cartas
@@ -100,8 +101,8 @@ def clue(ruta):
     """Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadores, luego
     selecciona las cartas secretas, mezcla y asigna el resto a los jugadores. Empieza el juego, 
     y al terminar avisa si hubo ganador o todos perdieron."""
-    interfaz_juego = interfaces.InterfazJuego()
-    interfaz_jugador = interfaces.InterfazJugador()
+    interfaz_juego = InterfazJuego()
+    interfaz_jugador = InterfazJugador()
 
     try:
         tablero, jugadores, cartas = inicializar_juego(ruta, interfaz_jugador)
