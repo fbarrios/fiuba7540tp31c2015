@@ -16,27 +16,30 @@ Introducción
 ============
 
 En la Universidad de Alfarería de la ciudad de Buenos Aires el querido docente
- Toban Lajp del curso de "Logaritmos I" ha desaparecido sin dejar rastros.
+ Toban Lajp ha desaparecido sin dejar rastros.
  
- Aunque hay pruebas fehacientes de que se haya olvidado el cargador de su celular
- y se fuera de vacaciones sin avisar a una pomposa isla en el caribe, la idea que
- recorre los pasillos de Paseo Colón es más sombría. Los rumores cuentan que alguno
- de sus allegados se ha encargado de él para siempre.
+ Aunque algunos afirman que ha ido de vacaciones a una pomposa isla del Caribe 
+ habiendo apagado su celular, la idea que recorre los pasillos de Paseo Colón es 
+ más sombría: los rumores cuentan que alguno de sus allegados se ha encargado de él 
+ para siempre con el objetivo de conseguir un aumento.
+ 
 Una comitiva decidió que los sospechosos a investigar son:
-   - Coronel D. Bárbara: Al haber desaparecido Toban Lajp, es quien queda a cargo
-   de su curso de "Logaritmos I". Es ciertamente el más beneficiado.
+
+   - Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a cargo
+   de su materia. Es ciertamente el más beneficiado.
    - Christian Grace: el extravagante joven millonario que tiene locas a las
-   alumnas del curso de "Logaritmos I" (del cual también es ayudante), pero que
-   siempre se vio a la sombra del profesor Lajp.
-   - Haskell Martinez: siendo que se encuentra en estado de querer ser
-   docente del curso, la desaparición de uno de los docentes puede catapultarlo
-   hasta la cima.
-   - Ing. Alan Información: el nuevo ayudante extranjero que fue recibido con
-   fiesta y panqueques, pero parecería querer escalar rápidamente hasta hacerse
-   cargo del curso, con el fin de ensñarnos a usar "ficheros" y no "archivos".
-   - Yisus S. : El gurú del grupo, y quien lo provee de vino y asados. Nadie
+   alumnas del curso de "Logaritmos I", y que se sospecha que hace tiempo está
+   planeando maniobras para obtener protagonismo.
+   - Haskell Martinez: siendo que se encuentra queriendo ejercer una carrera
+   docente, esta desaparición puede catapultarlo hasta la cima.
+   - Ing. Alan Información: la nueva personalidad extranjera que fue recibido con
+   fiesta y panqueques, traida para jerarquizar la currícula. Sin embargo parecería 
+   querer escalar rápidamente hasta hacerse cargo del curso. ¿Vale?
+   - Jesús: el gurú del grupo, y quien lo provee de vino y asados. Nadie
    desconfiaría de él, pero nunca se sabe...
-   - Sra Rosada: 
+   - Lic. Pólez: el único sospechoso no allegado a la víctima. Se sospecha que la 
+   desaparición del Ing. Lajp y la debilitación de la materia puede tener intereses 
+   políticos.   
    
 Se decidió que se descubrirá el culpable a partir del juego Clue[^1], pero nadie
  cuenta con el famoso juego de mesa, ni tiene dinero para poder compararlo en el
@@ -46,6 +49,7 @@ Se decidió que se descubrirá el culpable a partir del juego Clue[^1], pero nad
  al conocer a algunos personajes de la Universidad de Alfarería se desat una discusión
  que atentaba con una segunda desaparición misteriosa, por lo que será necesario
  pedirle a alumnos con menor experiencia que terminen de realizar el programa.
+ 
 Por suerte, el código que se pudo recuperar está completamente documentado, inclusive
  las partes faltantes, por lo que continuarlo no debiera ser una tarea tan laboriosa.
 
