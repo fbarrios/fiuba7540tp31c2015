@@ -17,43 +17,56 @@ FONDO_PANTALLA = 'imagenes/board.png'
 pygame.init()
 
 VER_POSIBILIDADES = "*"
-DADO_ESTADAR = "*"
+DADO_ESTANDAR = "*"
 
 
-def pedir_numero(minimo, maximo, mensaje):
+def solicitar_numero(minimo, maximo, mensaje):
     """Obtiene un numero del usuario, entre los valores minimos y maximos."""
     while True:
         valor = raw_input(mensaje)
         if not valor.isdigit():
-            print "Error, debe ingresar un valor numerico"
+            print "Error, debe ingresar un valor numerico."
             continue
         valor = int(valor)
         if minimo <= valor <= maximo:
             return valor
         else:
-            print "Error, debe ingresar un valor entre", minimo, "y", maximo
+            print "Error, debe ingresar un valor entre", minimo, "y", maximo, "."
 
 
-def pedir_carta(posibilidades, tipo):
-    """Le pide al usuario que elija alguna de todas las posibilidades de cartas, de un determinado tipo"""
+def mostrar_posibilidades(posibilidades):
+    """Le muestra al usuario las opciones que tiene para realizar su seleccion en un ingreso."""
+    for pos, carta in enumerate(posibilidades):
+        print str(pos + 1) + ". " + carta
+
+
+def solicitar_entre_opciones(posibilidades, tipo):
+    """Dada una lista de opciones, imprime un mensaje para que el usuario permita seleccionar entre una de ellas.
+    Devuelve el indice de la seleccion realizada."""
     while True:
-        valor = raw_input("Ingrese " + tipo + ". Si quiere ver todas las posibilidades, ingrese " + VER_POSIBILIDADES + "\n")
-        if valor in posibilidades:
-            return valor
-        elif valor == VER_POSIBILIDADES:
-            for carta in posibilidades:
-                print "-", carta
+        valor = raw_input("Ingrese " + tipo + ". Si quiere ver todas las posibilidades, ingrese " + VER_POSIBILIDADES + ".\n")
+        if not valor.isdigit() and valor != VER_POSIBILIDADES:
+            print "Error, debe ingresar un valor numerico."
+            continue
+
+        if valor == VER_POSIBILIDADES:
+            mostrar_posibilidades(posibilidades)
+            continue
+        if 1 <= int(valor) <= len(posibilidades):
+            return int(valor - 1)
         else:
-            print "Error, ingrese un " + tipo + " valida"
+            print "Error en el ingreso."
 
 
 def pregunta_si_no(pregunta):
     pregunta += " S/N\n"
     while True:
         si_no = raw_input(pregunta)
-        if si_no.upper() == "S": return True
-        elif si_no.upper() == "N": return False
-        else: print "Error"
+        if si_no.upper() == "S":
+            return True
+        elif si_no.upper() == "N":
+            return False
+        print "Error en el ingreso."
 
 
 class InterfazJugador(object):
@@ -79,47 +92,45 @@ class InterfazJugador(object):
 
     def pedir_cantidad_jugadores(self, minimo, maximo):
         """Le pide al usuario la cantidad de jugadores que van a jugar"""
-        return pedir_numero(minimo, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n")
+        return solicitar_numero(minimo, maximo, "Ingrese la cantidad de jugadores, entre " + str(minimo) + " y " + str(maximo) + ":\n")
 
     def pedir_nombre_jugador(self, num_jugador):
         """Le pide al usuario el nombre de un jugador. No se permite ingresar un nombre que ya fuere ingresado"""
         while True:
             nombre = raw_input("Ingrese nombre del jugador " + str(num_jugador + 1) + ":\n")
             if nombre in self.nombres:
-                print "Error, ya fue ingresado ese nombre"
+                print "Error, ya fue ingresado ese nombre."
                 continue
+
             self.nombres.append(nombre)
             return nombre
 
     def pedir_dados(self, jugador, max_dados, max_caras_dados):
         """Obtiene los dados del que debera tener el jugador indicado."""
-        cantidad = pedir_numero(1, max_dados, "Ingrese la cantidad de dados que tendra el jugador " + jugador + "\n")
-        dices = []
+        cantidad = solicitar_numero(1, max_dados, "Ingrese la cantidad de dados que tendra el jugador " + jugador + ".\n")
+        dados_jugadores = []
         for i in range(cantidad):
-            caras = pedir_numero(1, max_caras_dados, "Ingrese la cantidad de caras que tendra el dado " + str(i+1) + "\n")
-            print "Que tipo de dado es?"
-            print "1) Estandar (todas las caras equiprobables)"
-            print "2) Creciente"
-            print "3) Decreciente"
-            print "4) Triangular"
-            tipo_dado = pedir_numero(1, len(dados.GENERADORES), "Ingrese opcion valida de dado\n")
+            caras = solicitar_numero(1, max_caras_dados, "Ingrese la cantidad de caras que tendra el dado " + str(i+1) + ".\n")
+            print "Tipos de dados disponibles:"
+            mostrar_posibilidades(dados.TIPOS_DADOS)
+            tipo_dado = solicitar_entre_opciones(dados.TIPOS_DADOS, "que tipo de dado desea usar")
             generado = dados.GENERADORES[tipo_dado - 1](caras)
-            dices.append(generado)
-        return dices
+            dados_jugadores.append(generado)
+        return dados_jugadores
 
     def pedir_carta_a_mostrar(self, jugador, posibles):
         """Le pide al jugador que elija entre todas las cartas posibles, para mostrarselas a otro jugador."""
         print jugador.get_nombre(), "Debe elegir entre:"
         for i in range(len(posibles)):
             print str(i + 1) + ")" ,posibles[i]
-        return posibles[pedir_numero(1, len(posibles), "Ingrese una opcion valida\n") - 1]
+        return posibles[solicitar_numero(1, len(posibles), "Ingrese una opcion valida\n") - 1]
 
     def pedir_sentido(self):
         """Le pide el sentido al usuario. Se devuelven los valores de las constantes indicadas en el tablero."""
         print "Deseas moverte en sentido horario o sentido antihorario?"
-        print "1) Horario"
-        print "2) Antirhorario"
-        if (pedir_numero(1,2, "Ingrese una opcion valida\n") == 1):
+        mostrar_posibilidades(tablero.SENTIDOS)
+        indice_sentido = solicitar_entre_opciones(tablero.SENTIDOS, "el sentido del movimiento")
+        if tablero.SENTIDOS[indice_sentido] == tablero.SENTIDO_HORARIO:
             return tablero.HORARIO
         else:
             return tablero.ANTIHORARIO
@@ -130,15 +141,18 @@ class InterfazJugador(object):
 
     def pedir_personaje(self):
         """Le pide al usuario un personaje."""
-        return pedir_carta(self.personajes, "Personaje")
+        indice_personaje = solicitar_entre_opciones(self.personajes, "Personaje")
+        return self.personajes[indice_personaje]
 
     def pedir_arma(self):
         """Le pide al usuario un arma"""
-        return pedir_carta(self.armas, "Arma")
+        indice_arma = solicitar_entre_opciones(self.armas, "Arma")
+        return self.armas[indice_arma]
 
     def pedir_lugar(self):
         """Le pide al usuario un lugar"""
-        return pedir_carta(self.lugares, "Lugar")
+        indice_lugar = solicitar_entre_opciones(self.lugares, "Lugar")
+        return self.lugares[indice_lugar]
 
     def mostrar_carta(self, jugador, carta):
         """Le muestra al jugador que realizo la sugerencia la carta que el jugador (recibido por parametro) le
@@ -164,8 +178,7 @@ class InterfazJugador(object):
     def mostrar_mano(self, mano):
         """Muestra la mano de un jugador"""
         print "Tu mano es:"
-        for carta in mano:
-            print carta + ",",
+        print ", ".join(mano)
         print
 
     def mostrar_listado(self, listado):
@@ -178,8 +191,7 @@ class InterfazJugador(object):
         Parametros:
             - resultados: un iterable con los resultados del lanzamiento de cada dado"""
         print "Tiraste un....",
-        for tirada in resultados:
-            print str(tirada) + ",",
+        print ", ".join([str(resultado) for resultado in resultados])
         print "Total:", sum(resultados)
 
 
@@ -197,7 +209,7 @@ class InterfazJuego(object):
                             (pygame.image.load('imagenes/yellowplayer.png').convert_alpha(), '\033[93m'),
                             (pygame.image.load('imagenes/pinkplayer.png').convert_alpha(),'\033[95m'),
                             (pygame.image.load('imagenes/greyplayer.png').convert_alpha(), '\033[90m')]
-        self.colores = COLORES_PANTALLA[:]
+        self.colores = COLORES_PANTALLA
       
     def agregar_jugador(self, jugador):
         """Se agrega un jugador, y se le asigna un color de forma aleatoria"""
@@ -232,7 +244,7 @@ class InterfazJuego(object):
         """Muestra al jugador ganador"""
         print self.color_de_jugador(jugador)[COLOR_SHELL], jugador.get_nombre(), "HA GANADO!!!!!", FIN_COLOR
         
-    def le_toca_a(self, jugador):
+    def mostrar_turno(self, jugador):
         """Muestra que le toca a un jugador, con su color correspondiente."""
         print "Es el turno de", self.color_de_jugador(jugador)[COLOR_SHELL], jugador.get_nombre(), FIN_COLOR
        

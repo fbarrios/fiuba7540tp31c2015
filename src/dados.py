@@ -1,18 +1,24 @@
 import random
-STANDAR = (1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6)
+ESTANDAR = (1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6)
+
+TIPO_DADO_ESTANDAR = "Estandar (todas las caras equiprobables)"
+TIPO_DADO_CRECIENTE = "Creciente"
+TIPO_DADO_DECRECIENTE = "Decreciente"
+TIPO_DADO_TRIANGULAR = "Triangular"
+TIPOS_DADOS = [TIPO_DADO_ESTANDAR, TIPO_DADO_CRECIENTE, TIPO_DADO_DECRECIENTE, TIPO_DADO_TRIANGULAR]
 
 
 class Dado(object):
     """Clase que representa un conjunto de dados que permiten obtener un numero aletorio, dadas la
     cantidad de caras y probabilidades de cada uno."""
 
-    def __init__(self, prob_dados=STANDAR):
+    def __init__(self, prob_dados=ESTANDAR):
         """Recibe un iterable con las probabilidades de cada resultado del dado (empezando por 1).
         Parametros:
             - prob_dados: un iterable con tantos elementos como dados se quieran tener.
             Cada elemento de prob_dados debe ser un iterable, con tantos elementos como caras se deseen,
-            con la probabilidad de aparicion de cada cara. La suma de las probabilidades debe ser 1, sino
-            lanzara una excepcion de tipo ValueError."""
+            con la probabilidad de aparicion de cada cara. La suma de las probabilidades debe ser 1 (o
+            muy similar), sino lanzara una excepcion de tipo ValueError."""
         self.probabilidades = prob_dados[:]
         if abs(sum(self.probabilidades) - 1) > 0.05:
             raise ValueError('La suma de probabilidades de alguno de los dados no es 1')                
@@ -29,7 +35,7 @@ class Dado(object):
         return value
 
 
-def dado_standard(cant_caras):
+def dado_estandar(cant_caras):
     """Devuelve una lista con las probabilidades de cada cara de un dado estandar (todas las caras
     equiprobables)"""
     return Dado([1.0 / cant_caras for i in range(cant_caras)])
@@ -60,4 +66,4 @@ def dado_triangular(cant_caras):
     return Dado(triangulo_normalizado)
 
 
-GENERADORES = [dado_standard, dado_creciente, dado_decreciente, dado_triangular]
+GENERADORES = [dado_estandar, dado_creciente, dado_decreciente, dado_triangular]

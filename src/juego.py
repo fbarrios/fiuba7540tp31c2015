@@ -56,7 +56,7 @@ def inicializar_juego(ruta, interfaz):
     for i in range(cant_jugadores):
         listado = listado_cartas.ListadoCartas(personajes, armas, lugares)
         nombre = interfaz.pedir_nombre_jugador(i)
-        jugador_actual = jugador.Jugador(nombre, 0, listado, interfaz.pedir_dados(nombre,MAX_DADOS, MAX_CARAS), interfaz)
+        jugador_actual = jugador.Jugador(nombre, 0, listado, interfaz.pedir_dados(nombre, MAX_DADOS, MAX_CARAS), interfaz)
         jugadores.append(jugador_actual)
     
     return tablero_juego, jugadores, cartas
@@ -76,24 +76,24 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
         if len(jugadores) == len(perdedores):
             return None
             
-        jugador_toca = jugadores.pop(0)
-        if jugador_toca in perdedores:
-            jugadores.append(jugador_toca)
+        jugador_turno = jugadores.pop(0)
+        if jugador_turno in perdedores:
+            jugadores.append(jugador_turno)
             continue
         
-        interfaz.le_toca_a(jugador_toca)
-        jugador_toca.mover(tablero)
+        interfaz.mostrar_turno(jugador_turno)
+        jugador_turno.mover(tablero)
         interfaz.dibujar_tablero(tablero)
-        jugador_toca.sugerir(tablero, jugadores)
+        jugador_turno.sugerir(tablero, jugadores)
         
-        intento = jugador_toca.jugarsela()
+        intento = jugador_turno.arriesgar()
         if intento is not None:
             if intento == cartas_secretas:
-                return jugador_toca
+                return jugador_turno
             else:
-                interfaz.mostrar_perdedor(jugador_toca)
-                perdedores.append(jugador_toca)
-        jugadores.append(jugador_toca)
+                interfaz.mostrar_perdedor(jugador_turno)
+                perdedores.append(jugador_turno)
+        jugadores.append(jugador_turno)
 
 
 def clue(ruta):
@@ -102,7 +102,7 @@ def clue(ruta):
     y al terminar avisa si hubo ganador o todos perdieron."""
     interfaz_juego = interfaces.InterfazJuego()
     interfaz_jugador = interfaces.InterfazJugador()
-    
+
     try:
         tablero, jugadores, cartas = inicializar_juego(ruta, interfaz_jugador)
     except IOError:

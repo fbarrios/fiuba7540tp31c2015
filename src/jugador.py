@@ -1,11 +1,13 @@
 
 class Jugador(object):
-    """Representa a un jugador manejado por un usuario. Todo el manejo para pedirle y mostrarle cosas al usuario
-    se hace utilizando su atributo "pedidos" que se encarga de dichas tareas. En este modulo no puede haber ninguna
-    funcion raw_input ni print, ni ninguna semejante."""
+    """Representa a un jugador manejado por un usuario.
+    Todo el manejo para pedirle y mostrarle cosas al usuario se hace utilizando su atributo "pedidos"
+    que se encarga de dichas tareas.
+    En este modulo no puede haber ninguna funcion raw_input ni print, ni ninguna semejante."""
+
     def __init__(self, nombre, posicion_inicial, listado_inicial, dados, pedidos):
         """Recibe su nombre, una posicion inicial, un listado ya inicializado, los dados a usar
-        y alguien que le permita hacerle pedidos al usuario, de la manera que correzponda."""
+        y alguien que le permita hacerle pedidos al usuario, de la manera que corresponda."""
         self.posicion = posicion_inicial
         self.listado = listado_inicial
         self.mano = []
@@ -18,8 +20,8 @@ class Jugador(object):
         return self.nombre
         
     def __eq___(self, otro):
-        """Verifica si un jugador es igual a otro jugador. Dos jugadores son iguales
-        cuando tienen el mismo nombre"""
+        """Verifica si un jugador es igual a otro jugador.
+        Dos jugadores son iguales cuando tienen el mismo nombre"""
         return self.nombre == otro.nombre
     
     def asignar_carta(self, carta):
@@ -47,7 +49,7 @@ class Jugador(object):
         else:
             return self.pedidos.pedir_carta_a_mostrar(self, eleccion)
     
-    def jugarsela(self):
+    def arriesgar(self):
         """Devuelve arriesgo del usuario (personaje, arma, jugador), o None si no desea arriesgarse."""
         se_la_juega = self.pedidos.preguntar_arriesgo()
         return se_la_juega

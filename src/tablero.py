@@ -1,6 +1,10 @@
 HORARIO = 0
 ANTIHORARIO = 1
 
+SENTIDO_HORARIO = "Horario"
+SENTIDO_ANTIHORARIO = "Antihorario"
+SENTIDOS = [SENTIDO_HORARIO, SENTIDO_ANTIHORARIO]
+
 
 class Tablero(object):
     """Representa un tablero circular de un juego con casilleros, en los cuales
