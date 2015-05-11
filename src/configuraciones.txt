@@ -1,5 +1,5 @@
 casilleros: libre, libre, libre, libre, Terraza, Terraza, libre, libre, Andamio, Andamio, Andamio, Andamio, libre, libre, libre, libre, libre, Laboratorio F, Laboratorio F, libre, libre, libre, Salon del CD, Salon del CD, Salon del CD, Aula 400, Aula 400, libre, libre, libre, Aula 203, Aula 203, libre, libre, libre, libre, E9, libre, E9, libre, libre, libre, libre, Gabinete de la SEUBE, Gabinete de la SEUBE, Plaza frente a la FIUBA, Plaza frente a la FIUBA, libre
 posiciones: 550-255, 545-280, 540-300, 530-330, 515-355, 500-375, 465-395, 445-410, 420-425, 385-430, 355-445, 320-450, 290-450, 255-440, 220-435, 190-425, 165-412, 135-395, 115-375, 95-355, 75-330, 65-300, 40-280, 35-255, 35-225, 40-200, 45-170, 70-145, 85-120, 110-100, 120-80, 150-60, 180-50, 220-50, 255-40, 285-40, 320-40, 355-40, 385-40, 415-60, 450-70, 475-90, 495-105, 525-125, 540-150, 550-175, 560-200, 555-225
-personajes: Coronel Barbara, Christian Grace, Haskell Martinez, Ing. Alan Informacion, Hermanos Crusoe Largo, Jesus S.
-armas: Matafuegos vencido, Proyector quemado, Osciloscopio, Integrales Triples, Paty del puestito, Serrucho, Colectivo 152
+personajes: Coronel D. Bárbara, Christian Grace, Haskell Martinez, Ing. Alan Información, Jesús, Lic. Pólez
+armas: Matafuegos vencido, Proyector quemado, Marcador sin tinta, Libro de analisis, Paty del puestito, Borrador, Teclado que no anda
 lugares: Laboratorio F, Aula 400, Aula 203, Andamio, Terraza, E9, Gabinete de la SEUBE, Plaza frente a la FIUBA, Salon del CD
