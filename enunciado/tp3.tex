@@ -1,0 +1,208 @@
+\documentclass[12pt,spanish,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={Algoritmos y Programación I (75.40) Trabajo práctico n.º 3},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=black,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{}
+\else
+  \usepackage[spanish]{babel}
+\fi
+
+\title{Algoritmos y Programación I (75.40)\\Trabajo práctico n.º 3}
+\date{Primer cuatrimeste 2015}
+\usepackage[marginal,bottom,splitrule,stable]{footmisc}
+\urlstyle{tt}
+
+\begin{document}
+\maketitle
+
+\section{1. Introducción}\label{introducciuxf3n}
+
+En la Universidad de Alfarería de la ciudad de Buenos Aires el querido
+docente Toban Lajp ha desaparecido sin dejar rastros.
+
+Aunque algunos afirman que ha ido de vacaciones a una pomposa isla del
+Caribe habiendo apagado su celular, la idea que recorre los pasillos de
+Paseo Colón es más sombría: los rumores cuentan que alguno de sus
+allegados se ha encargado de él para siempre con el objetivo de
+conseguir un aumento.
+
+Una comitiva decidió que los sospechosos a investigar son:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a
+  cargo de su materia. Es ciertamente el más beneficiado.
+\item
+  Christian Grace: el extravagante joven millonario que tiene locas a
+  las alumnas del curso de ``Logaritmos I'', y que se sospecha que hace
+  tiempo está planeando maniobras para obtener protagonismo.
+\item
+  Haskell Martinez: siendo que se encuentra queriendo ejercer una
+  carrera docente, esta desaparición puede catapultarlo hasta la cima.
+\item
+  Ing. Alan Información: la nueva personalidad extranjera que fue
+  recibido con fiesta y panqueques, traida para jerarquizar la
+  currícula. Sin embargo parecería querer escalar rápidamente hasta
+  hacerse cargo del curso. ¿Vale?
+\item
+  Jesús: el gurú del grupo, y quien lo provee de vino y asados. Nadie
+  desconfiaría de él, pero nunca se sabe\ldots{}
+\item
+  Lic. Pólez: el único sospechoso no allegado a la víctima. Se sospecha
+  que la desaparición del Ing. Lajp y la debilitación de la materia
+  puede tener intereses políticos.
+\end{itemize}
+
+Se decidió que se descubrirá el culpable a partir del juego
+Clue\footnote{http://en.wikipedia.org/wiki/Cluedo\#Games}, pero nadie
+cuenta con el famoso juego de mesa, ni tiene dinero para poder
+compararlo en el corto plazo. Por lo tanto, se le pidió a un grupo muy
+prestigioso de programadores que realicen el diseños y programación del
+juego. Dicho grupo terminó de realizar todo el diseño, y de implementar
+las interfaces y algunas partes del juego, pero al conocer a algunos
+personajes de la Universidad de Alfarería se desat una discusión que
+atentaba con una segunda desaparición misteriosa, por lo que será
+necesario pedirle a alumnos con menor experiencia que terminen de
+realizar el programa.
+
+Por suerte, el código que se pudo recuperar está completamente
+documentado, inclusive las partes faltantes, por lo que continuarlo no
+debiera ser una tarea tan laboriosa.
+
+\section{2. Consigna}\label{consigna}
+
+Se pide implementar una variación del juego Clue.
+
+Se entregan ya desarrollada e implementada parte de la funcionalidad
+basica del programa. Esto incluye una interfaz gráfica, las funciones
+principales del ciclo principal y una especificación de la interfaz de
+comunicación entre los objetos del juego.
+
+El alumno deberá completar las funciones faltantes, respetando las
+especificaciones que se encuentran en el código fuente.
+
+\newpage
+
+\section{3. Criterios de aprobación}\label{criterios-de-aprobaciuxf3n}
+
+A continuación se describen los criterios y lineamientos que deben
+respetarse en el desarrollo del trabajo.
+
+\subsection{3.1 Grupos}\label{grupos}
+
+El trabajo práctico debe realizarse en grupo de dos personas.
+
+\subsection{3.2 Informe}\label{informe}
+
+El informe deberá consistir de las siguientes partes, según fueron
+explicadas en clase:
+
+\begin{itemize}
+\item
+  Diseño: diseño del programa y de las clases, atributos y métodos a
+  desarrollar.
+\item
+  Implementación: Incluir aquí todo el código fuente utilizado,
+  imprimiéndolo en tipo de letra \texttt{monoespaciado}, para facilitar
+  su lectura.
+\item
+  Pruebas: Incluir todas las funciones desarrolladas que permitan
+  verificar el correcto funcionamiento de las operaciones definidas para
+  cada clase. No incluir capturas de pantalla.
+\item
+  Mantenimiento (opcional): posibles cambios a realizar en el trabajo,
+  para mejorarlo.
+\item
+  También opcionalmente, toda explicación adicional que consideren
+  necesaria, referencias utilizadas, dificultades encontradas y
+  conclusiones.
+\end{itemize}
+
+El informe debe estar lo más completo posible, con presentación y
+formato adecuados. Por ejemplo, este enunciado cumple con los
+requerimientos de un informe bien presentado.
+
+\subsection{3.3 Código}\label{cuxf3digo}
+
+Además de satisfacer las especificaciones de la consigna, el código
+entregado debe cumplir los siguientes requerimientos:
+
+\begin{itemize}
+\item
+  El código debe ser claro y legible.
+\item
+  Todas las clases y funciones deben estar adecuadamente documentadas, y
+  donde sea necesario el código debe estar acompañado de comentarios.
+\item
+  Además, claro, debe satisfacer la especificación de la interfaz.
+\end{itemize}
+
+\section{4. Entrega}\label{entrega}
+
+La entrega del trabajo consiste en:
+
+\begin{itemize}
+\item
+  El informe y código fuente impresos. Para el código fuente utilizar
+  una tipografía \texttt{monoespacio}.
+\item
+  El informe digital, en formato \emph{PDF}.
+\item
+  Una versión digital de todos archivos \texttt{.py} de código,
+  separados del informe. Al ser más de un archivo, se pide que estén
+  comprimidos en un fichero \texttt{.zip}.
+\end{itemize}
+
+El informe impreso debe entregarse en clase. Los dos últimos (PDF y
+código fuente) deben enviarse a la dirección electrónica
+\texttt{tps.7540rw@gmail.com} con el asunto \emph{``TP3 -
+\textless{}PADRÓN 1\textgreater{} - \textless{}PADRÓN
+2\textgreater{}''}.
+
+El plazo de entrega vence el \textbf{viernes 29 de mayo de 2015}.
+
+\end{document}
