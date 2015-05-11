@@ -74,6 +74,10 @@ tiene forma circular y el jugador podrá seleccionar el sentido del movimiento.
 que tienen las piezas del tablero serán en los sentidos horario y antihorario 
 definido luego de lanzar los dados.
 
+- Dado que el Ing. Lajp tenía la tendencia a jugar con dados cargados, en esta
+versión se permite especificar las cantidades de dados, la cantidad de caras de cada
+uno y la probabilidad de ocurrencia de cada cara.
+
 Se entrega ya desarrollada e implementada parte de la funcionalidad
 básica del programa. Esto incluye una interfaz gráfica, las funciones principales 
 del ciclo principal y una especificación de la interfaz de comunicación
