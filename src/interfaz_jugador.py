@@ -41,7 +41,7 @@ class InterfazJugador(object):
             print "Tipos de dados disponibles:"
             mostrar_posibilidades(dados.TIPOS_DADOS)
             tipo_dado = solicitar_entre_opciones(dados.TIPOS_DADOS, "que tipo de dado desea usar")
-            generado = dados.GENERADORES[tipo_dado - 1](caras)
+            generado = dados.GENERADORES[tipo_dado](caras)
             dados_jugadores.append(generado)
         return dados_jugadores
 
