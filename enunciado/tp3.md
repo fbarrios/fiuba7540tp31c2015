@@ -64,7 +64,15 @@ finalizarlo no debería ser una tarea tan laboriosa.
 2. Consigna
 ========
 
-Se pide implementar una variación del juego Clue. 
+Se pide implementar una variación del juego Clue. Entre las diferencias del juego
+con la pedida se encuentran:
+
+- El tablero está simplificado con respecto al juego original. En esta versión
+tiene forma circular y el jugador podrá seleccionar el sentido del movimiento.
+
+- Los jugadores no representan a ningún personaje del juego. El único movimiento
+que tienen las piezas del tablero serán en los sentidos horario y antihorario 
+definido luego de lanzar los dados.
 
 Se entrega ya desarrollada e implementada parte de la funcionalidad
 básica del programa. Esto incluye una interfaz gráfica, las funciones principales 

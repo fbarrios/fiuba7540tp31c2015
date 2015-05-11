@@ -76,7 +76,8 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
     while True:
         if len(jugadores) == len(perdedores):
             return None
-            
+        
+        # Se saca al jugador de la ronda temporalmente.    
         jugador_turno = jugadores.pop(0)
         if jugador_turno in perdedores:
             jugadores.append(jugador_turno)
@@ -94,6 +95,8 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
             else:
                 interfaz.mostrar_perdedor(jugador_turno)
                 perdedores.append(jugador_turno)
+
+        # Se agrega al jugador al final de la cola.
         jugadores.append(jugador_turno)
 
 
