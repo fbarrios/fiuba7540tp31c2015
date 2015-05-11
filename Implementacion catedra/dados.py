@@ -1,10 +1,10 @@
 import random
-STADARD = (1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6)  
+STANDAR = (1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 1.0/6)
 
 
 class Dado(object):
     '''Representa un conjunto de dados que, dadas la cantidad de caras y probabilidades de cada uno de estas, permite lanzarlos.'''
-    def __init__(self, prob_dados = STADARD):
+    def __init__(self, prob_dados = STANDAR):
         '''Recibe un iterable con las probabilidades de cada resultado del dado (empezando por 1).
         Parametros:
             - prob_dados: un iterable con tantos elementos como dados se quieran tener.
