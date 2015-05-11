@@ -79,8 +79,9 @@ PyGame:
 de PyGame [^2].
 
 
-El alumno deberá completar las funciones faltantes, respetando las especificaciones 
-que se encuentran en el código fuente.
+El alumno deberá completar las clases faltantes 
+(`Tablero`, `Jugador`, `Dados` (los cuatro tipos) y `ListadoCartas`), respetando 
+las especificaciones que se encuentran en el código fuente.
 
 [^2]: http://www.pygame.org/download.shtml
 
