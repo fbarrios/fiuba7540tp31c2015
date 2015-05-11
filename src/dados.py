@@ -9,9 +9,7 @@ TIPOS_DADOS = [TIPO_DADO_ESTANDAR, TIPO_DADO_CRECIENTE, TIPO_DADO_DECRECIENTE, T
 
 
 class Dado(object):
-    """Clase que representa un conjunto de dados que permiten obtener un numero aletorio, dadas la
-    cantidad de caras y probabilidades de cada uno."""
-
+    """Clase que representa un dadoo obtener un numero aletorio, con una distribucion de probabilidades dada por cada cara."""
     def __init__(self, prob_dados=ESTANDAR):
         """Recibe un iterable con las probabilidades de cada resultado del dado (empezando por 1).
         Parametros:
@@ -34,36 +32,32 @@ class Dado(object):
             value += 1
         return value
 
+class DadoEstandar(Dado):
+    """Clase que representa un dado con una distribucion de probabilidades estandar"""
+    def __init__(self, caras):
+        Dado.__init__(self, [1.0 / caras for i in range(caras)])
 
-def dado_estandar(cant_caras):
-    """Devuelve una lista con las probabilidades de cada cara de un dado estandar (todas las caras
-    equiprobables)"""
-    return Dado([1.0 / cant_caras for i in range(cant_caras)])
+class DadoCreciente(Dado):
+    """Clase que representa un dado con una distribucion de probabilidades creciente"""
+    def __init__(self, caras):
+        suma = caras * (caras + 1) / 2
+        Dado.__init__(self, [ (i + 1) * 1.0 / suma for i in range(caras)])
 
+class DadoDecreciente(Dado):
+    """Clase que representa un dado con una distribucion de probabilidades decreciente"""
+    def __init__(self, caras):
+        suma = caras * (caras + 1) / 2
+        Dado.__init__(self, [ (i + 1) * 1.0 / suma for i in range(caras)][::-1])
 
-def dado_creciente(cant_caras):
-    """Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras de mayor
-    numero tienen mayor probabilidad (probabilidad creciente)."""
-    suma = cant_caras * (cant_caras + 1) / 2
-    return Dado([ (i + 1) * 1.0 / suma for i in range(cant_caras)])
+class DadoTriangular(Dado):
+    """Clase que representa un dado con una distribucion de probabilidades triangular: las caras cercanas al valor medio
+    tienen mayor probabilidad, y a medida que nos alejamos de dicho valor la probabilidad va disminuyendo."""
+    def __init__(self, caras):
+        media = (caras + 1) / 2
+        suma = caras * (caras + 1) / 2
+        triangulo = [(suma - abs(i - media)) for i in range(caras)]
+        triangulo_normalizado = [ 1.0 * elemento / sum(triangulo) for elemento in triangulo]
+        Dado.__init__(self, triangulo_normalizado)
+        
 
-
-def dado_decreciente(cant_caras):
-    """Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras de menor
-    numero tienen mayor probabilidad (probabilidad decreciente)."""
-    dado = dado_creciente(cant_caras)
-    return dado.probabilidades[::-1]
-
-
-def dado_triangular(cant_caras):
-    """Devuelve una lista con las probabilidades de cada cara de un dado en el cual las caras cercanas
-    al valor medio tienen mayor probabilidad, y a medida que me voy alejando del valor medio, la
-    probabilidad va decreciendo (probabilidad triangular)."""
-    media = (cant_caras + 1) / 2
-    suma = cant_caras * (cant_caras + 1) / 2
-    triangulo = [(suma - abs(i - media)) for i in range(cant_caras)]
-    triangulo_normalizado = [ 1.0 * elemento / sum(triangulo) for elemento in triangulo]
-    return Dado(triangulo_normalizado)
-
-
-GENERADORES = [dado_estandar, dado_creciente, dado_decreciente, dado_triangular]
+GENERADORES = [DadoEstandar, DadoCreciente, DadoDecreciente, DadoTriangular]
