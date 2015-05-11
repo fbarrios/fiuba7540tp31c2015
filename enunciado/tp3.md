@@ -19,7 +19,7 @@ En la Universidad de Alfarería de la ciudad de Buenos Aires el querido docente
  Toban Lajp ha desaparecido sin dejar rastros.
  
  Aunque algunos afirman que ha ido de vacaciones a una pomposa isla del Caribe 
- habiendo apagado su celular, la idea que recorre los pasillos de Paseo Colón es 
+ habiendo apagado su celular, la idea que recorre los pasillos es 
  más sombría: los rumores cuentan que alguno de sus allegados se ha encargado de él 
  para siempre con el objetivo de conseguir un aumento.
  
@@ -28,8 +28,8 @@ Un plantel de selectos decidió que los sospechosos a investigar son:
    - Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a cargo
    de su materia. Es ciertamente el más beneficiado.
    - Christian Grace: el extravagante joven millonario que tiene locas a las
-   alumnas del curso de "Logaritmos I", y que se sospecha que hace tiempo está
-   planeando maniobras para obtener protagonismo.
+   alumnas, y que se sospecha que hace tiempo está planeando maniobras para obtener 
+   protagonismo.
    - Haskell Martinez: siendo que se encuentra queriendo ejercer una carrera
    docente, esta desaparición puede catapultarlo hasta la cima.
    - Ing. Alan Información: la nueva personalidad extranjera que fue recibido con
