@@ -39,7 +39,7 @@ def cargar_datos(ruta):
     return (personajes, armas, lugares), casilleros, posiciones
 
 
-def inicializacion(ruta, interfaz):
+def inicializar_juego(ruta, interfaz):
     """Inicializa el juego, creando el tablero, cargando las cartas, cargando los nuevos jugadores."""
     cartas, casilleros, posiciones = cargar_datos(ruta)
     tablero_juego = tablero.Tablero(casilleros, posiciones)
@@ -97,19 +97,21 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
 
 
 def clue(ruta):
-    """Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadres, luego 
+    """Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadores, luego
     selecciona las cartas secretas, mezcla y asigna el resto a los jugadores. Empieza el juego, 
     y al terminar avisa si hubo ganador o todos perdieron."""
     interfaz_juego = interfaces.InterfazJuego()
     interfaz_jugador = interfaces.InterfazJugador()
+    
     try:
-        tablero, jugadores, cartas = inicializacion(ruta, interfaz_jugador)
+        tablero, jugadores, cartas = inicializar_juego(ruta, interfaz_jugador)
     except IOError:
         raise IOError("El archivo de configuracion del tablero no existe!!")
     
     for jugador in jugadores:
         interfaz_juego.agregar_jugador(jugador)
-    
+
+    # Selecciona las cartas que van a ser secretas.
     personajes, armas, lugares = cartas
     secretas = (random.choice(personajes), random.choice(armas), random.choice(lugares))
     personajes.remove(secretas[0])
@@ -118,7 +120,8 @@ def clue(ruta):
     
     cartas_restantes = personajes + armas + lugares
     random.shuffle(cartas_restantes)
-    
+
+    # Asigna las cartas a los jugadores.
     i = 0
     while len(cartas_restantes) > 0:
         jugadores[i].asignar_carta(cartas_restantes.pop())

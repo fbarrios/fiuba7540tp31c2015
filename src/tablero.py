@@ -4,12 +4,14 @@ ANTIHORARIO = 1
 
 class Tablero(object):
     """Representa un tablero circular de un juego con casilleros, en los cuales
-    pueden haber lugares vacios, o con lugares en especial."""
+    pueden haber espacios vacios, o con lugares."""
+
     def __init__(self, casilleros, posiciones):
         """Recibe una lista de casilleros. Cada casillero debe contener una cadena
         con el contenido del casillero, en la posicion indicada, o None si no hay nada."""
         if len(casilleros) != len(posiciones):
             raise ValueError('La cantidad de casilleros y la cantidad de posiciones no concuerdan')
+
         self.casilleros = casilleros
         self.posiciones = posiciones
        
