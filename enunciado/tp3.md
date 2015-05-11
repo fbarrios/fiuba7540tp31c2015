@@ -23,7 +23,7 @@ En la Universidad de Alfarería de la ciudad de Buenos Aires el querido docente
  más sombría: los rumores cuentan que alguno de sus allegados se ha encargado de él 
  para siempre con el objetivo de conseguir un aumento.
  
-Una comitiva decidió que los sospechosos a investigar son:
+Un plantel de selectos decidió que los sospechosos a investigar son:
 
    - Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a cargo
    de su materia. Es ciertamente el más beneficiado.
@@ -38,20 +38,25 @@ Una comitiva decidió que los sospechosos a investigar son:
    - Jesús: el gurú del grupo, y quien lo provee de vino y asados. Nadie
    desconfiaría de él, pero nunca se sabe...
    - Lic. Pólez: el único sospechoso no allegado a la víctima. Se sospecha que la 
-   desaparición del Ing. Lajp y la debilitación de la materia puede tener intereses 
-   políticos.   
+   desaparición del Ing. Lajp y la consecuente debilitación de la materia puede 
+   tener intereses políticos para perpetuarlo en su rol de no hacer nada.
    
-Se decidió que se descubrirá el culpable a partir del juego Clue[^1], pero nadie
- cuenta con el famoso juego de mesa, ni tiene dinero para poder compararlo en el
- corto plazo. Por lo tanto, se le pidió a un grupo muy prestigioso de programadores
- que realicen el diseños y programación del juego. Dicho grupo terminó de realizar
- todo el diseño, y de implementar las interfaces y algunas partes del juego, pero 
- al conocer a algunos personajes de la Universidad de Alfarería se desat una discusión
- que atentaba con una segunda desaparición misteriosa, por lo que será necesario
- pedirle a alumnos con menor experiencia que terminen de realizar el programa.
- 
-Por suerte, el código que se pudo recuperar está completamente documentado, inclusive
- las partes faltantes, por lo que continuarlo no debiera ser una tarea tan laboriosa.
+Se decidió que la situación es una excelente oportunidad para ser modelada como
+una versión del famoso juego Clue[^1].
+
+Previendo que nadie va a tener dinero como para comprar la versión de mesa, 
+se le solicitó a un grupo muy prestigioso de programadores que realicen el diseño y 
+la implementación de una versión digital. 
+
+Lamentablemente la implementación se dejó a medio terminar. El grupo de desarrollo
+resultó ser muy conflictivo y se desató una discusión que atentaba con una 
+segunda desaparición. Por lo tanto, la tarea de concluirlo le fue encomendada a 
+programadores novatos de gran potencial.
+
+Como estos no estuvieron disponibles, no quedó alternativa más que pedirle a 
+los alumnos del curso de Algoritmos y Programación 1. Por suerte, el código que se pudo 
+recuperar está completamente documentado, inclusive las partes faltantes, por lo que 
+finalizarlo no debería ser una tarea tan laboriosa.
 
  [^1]: http://en.wikipedia.org/wiki/Cluedo#Games
 
@@ -78,13 +83,13 @@ que se encuentran en el código fuente.
 A continuación se describen los criterios y lineamientos que deben respetarse
 en el desarrollo del trabajo.
 
-3.1 Grupos
+3.1. Grupos
 -------
 
 El trabajo práctico debe realizarse en grupo de dos personas.
 
 
-3.2 Informe
+3.2. Informe
 -------
 
 El informe deberá consistir de las siguientes partes, según fueron explicadas en clase:
@@ -107,7 +112,7 @@ El informe debe estar lo más completo posible, con presentación y formato
 adecuados. Por ejemplo, este enunciado cumple con los requerimientos de un
 informe bien presentado.
 
-3.3 Código
+3.3. Código
 ------
 
 Además de satisfacer las especificaciones de la consigna, el código entregado
