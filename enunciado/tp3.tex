@@ -66,7 +66,8 @@ docente Toban Lajp ha desaparecido sin dejar rastros.
 Aunque algunos afirman que ha ido de vacaciones a una pomposa isla del
 Caribe habiendo apagado su celular, la idea que recorre los pasillos es
 más sombría: los rumores cuentan que alguno de sus allegados se ha
-encargado de él para siempre con el objetivo de conseguir un aumento.
+encargado de él para siempre; con el objetivo de conseguir algún
+beneficio.
 
 Un plantel de selectos decidió que los sospechosos a investigar son:
 
@@ -74,10 +75,11 @@ Un plantel de selectos decidió que los sospechosos a investigar son:
 \itemsep1pt\parskip0pt\parsep0pt
 \item
   Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a
-  cargo de su materia. Es ciertamente el más beneficiado.
+  cargo de su materia. Este ascenso inmediato lo convierte ciertamente
+  en el más beneficiado.
 \item
-  Christian Grace: el extravagante joven millonario que tiene locas a
-  las alumnas, y que se sospecha que hace tiempo está planeando
+  Christian Grace: el extravagante joven millonario que tiene locos a
+  alumnos y a alumnas, y que se sospecha que hace tiempo está planeando
   maniobras para obtener protagonismo.
 \item
   Haskell Martinez: siendo que se encuentra queriendo ejercer una
@@ -117,7 +119,26 @@ una tarea tan laboriosa.
 
 \section{2. Consigna}\label{consigna}
 
-Se pide implementar una variación del juego Clue.
+El Clue o Cluedo es un juego de mesa cuyas reglas se encuentran
+disponibles en Internet \footnote{http://www.hasbro.com/common/instruct/Clue\_in\_Spanish\_\%282002\%29.pdf}.
+Se pide desarrollar una simplificación del juego, con las siguientes
+variaciones:
+
+\begin{itemize}
+\item
+  El tablero es más sencillo que en la versión original. Aquí tiene
+  forma circular y el jugador a moverse podrá seleccionar el sentido del
+  movimiento.
+\item
+  Los jugadores no representan a ningún personaje del juego. El único
+  movimiento que tienen las piezas del tablero serán en los sentidos
+  horario y antihorario definido luego de lanzar los dados.
+\item
+  Dado que el Ing. Lajp tenía la tendencia a jugar con dados cargados,
+  en esta versión se permite especificar las cantidades de dados, la
+  cantidad de caras de cada uno y la probabilidad de ocurrencia de cada
+  cara.
+\end{itemize}
 
 Se entrega ya desarrollada e implementada parte de la funcionalidad
 básica del programa. Esto incluye una interfaz gráfica, las funciones
@@ -131,7 +152,7 @@ PyGame:
 \itemsep1pt\parskip0pt\parsep0pt
 \item
   En sistemas operativos Linux, ejecutar:
-  \texttt{sudo apt-get install python-pygame}.
+  \texttt{sudo apt-get install python-pygame}
 \item
   En sistemas operativos Windows, descargar el instalador desde el sitio
   web de PyGame \footnote{http://www.pygame.org/download.shtml}.
@@ -141,6 +162,18 @@ El alumno deberá completar las clases faltantes (\texttt{Tablero},
 \texttt{Jugador}, \texttt{Dados} (los cuatro tipos) y
 \texttt{ListadoCartas}), respetando las especificaciones que se
 encuentran en el código fuente.
+
+Adicionalmente se deberán programar pruebas para las clases
+\texttt{Tablero}, \texttt{Dados} y \texttt{ListadoCartas} siguiendo el
+ejemplo provisto y usando la herramienta de pruebas automatizadas de
+Python: unittest \footnote{https://docs.python.org/2/library/unittest.html}.
+
+Para correr las pruebas simplemente se debe ejecutar el archivo de
+pruebas:
+
+\begin{verbatim}
+python pruebas_tp3.py
+\end{verbatim}
 
 \section{3. Criterios de aprobación}\label{criterios-de-aprobaciuxf3n}
 
@@ -193,7 +226,8 @@ entregado debe cumplir los siguientes requerimientos:
   Todas las clases y funciones deben estar adecuadamente documentadas, y
   donde sea necesario el código debe estar acompañado de comentarios.
 \item
-  Además, claro, debe satisfacer la especificación de la interfaz.
+  Además, claro, debe satisfacer la especificación de la interfaz y
+  ninguna prueba puede fallar.
 \end{itemize}
 
 \section{4. Entrega}\label{entrega}

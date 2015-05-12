@@ -1,12 +1,17 @@
 from interfaz_juego import InterfazJuego
 from interfaz_jugador import InterfazJugador
-import tablero
-import jugador
-import listado_cartas
-import sys
+from tablero import Tablero
+from jugador import Jugador
+from listado_cartas import ListadoCartas
 import random
 
-ARCHIVO_DEFAULT = "configuraciones.txt"
+# Parametros del juego.
+ARCHIVO_CASILLEROS = "datos/casilleros.txt"
+ARCHIVO_POSICIONES = "datos/posiciones.txt"
+ARCHIVO_PERSONAJES = "datos/personajes.txt"
+ARCHIVO_ARMAS = "datos/armas.txt"
+ARCHIVO_LUGARES = "datos/lugares.txt"
+
 MINIMA_CANTIDAD_JUGADORES = 3
 MIN_CARTAS_POR_JUGADOR = 5
 LIBRE = "libre"
@@ -14,38 +19,31 @@ MAX_DADOS = 5
 MAX_CARAS = 10
 
 
-def obtener_de_archivo(archivo):
-    """Obtiene una lista con todos los parametros indicados en la siguiente linea del archivo."""
-    linea = archivo.readline().rstrip()
-    return linea.split(": ")[1].split(", ")
+def obtener_datos(nombre_archivo):
+    """Obtiene una lista con el contenido del archivo."""
+    with open(nombre_archivo) as archivo:
+        return [linea.rstrip() for linea in archivo]
 
 
-def cargar_datos(ruta):
-    """Obtiene las configuraciones del archivo de configuracion del tablero y cartas.
-    Parametros:
-        - ruta: ruta del archivo.
-    Salida: tupla con las cartas (una tupla (personajes, armas, lugares)),  una lista de casilleros y
-    una lista con posiciones (para visualizar en el tablero)."""
-    arch = open(ruta)
-    casilleros = [casillero if casillero.lower() != LIBRE else None for casillero in obtener_de_archivo(arch)]
-    posiciones = [(int(pos.split("-")[0]), int(pos.split("-")[1])) for pos in obtener_de_archivo(arch)]
-    personajes = obtener_de_archivo(arch)
-    armas = obtener_de_archivo(arch)
-    lugares = obtener_de_archivo(arch)
-    arch.close()
-    
+def inicializar_juego(interfaz):
+    """Inicializa el juego, creando el tablero, cargando las cartas, cargando los nuevos jugadores."""
+
+    # Carga los datos de los archivos.
+    casilleros = [casillero if casillero != LIBRE else None
+                    for casillero in obtener_datos(ARCHIVO_CASILLEROS)]
+    posiciones = [(int(posicion.split(',')[0]), int(posicion.split(',')[1]))
+                    for posicion in obtener_datos(ARCHIVO_POSICIONES)]
+    tablero_juego = Tablero(casilleros, posiciones)
+
+    lugares = obtener_datos(ARCHIVO_LUGARES)
+    personajes = obtener_datos(ARCHIVO_PERSONAJES)
+    armas = obtener_datos(ARCHIVO_ARMAS)
+
+    # Verifica que todos los lugares sean accesibles desde el tablero.
     for lugar in lugares:
         if lugar not in casilleros:
             raise ValueError("lugares inaccesibles")
-    return (personajes, armas, lugares), casilleros, posiciones
 
-
-def inicializar_juego(ruta, interfaz):
-    """Inicializa el juego, creando el tablero, cargando las cartas, cargando los nuevos jugadores."""
-    cartas, casilleros, posiciones = cargar_datos(ruta)
-    tablero_juego = tablero.Tablero(casilleros, posiciones)
-    personajes, armas, lugares = cartas
-    
     interfaz.set_personajes(personajes)
     interfaz.set_armas(armas)
     interfaz.set_lugares(lugares)
@@ -55,11 +53,12 @@ def inicializar_juego(ruta, interfaz):
     
     jugadores = []
     for i in range(cant_jugadores):
-        listado = listado_cartas.ListadoCartas(personajes, armas, lugares)
+        listado = ListadoCartas(personajes, armas, lugares)
         nombre = interfaz.pedir_nombre_jugador(i)
-        jugador_actual = jugador.Jugador(nombre, 0, listado, interfaz.pedir_dados(nombre, MAX_DADOS, MAX_CARAS), interfaz)
+        jugador_actual = Jugador(nombre, 0, listado, interfaz.pedir_dados(nombre, MAX_DADOS, MAX_CARAS), interfaz)
         jugadores.append(jugador_actual)
-    
+
+    cartas = (personajes, armas, lugares)
     return tablero_juego, jugadores, cartas
 
 
@@ -100,15 +99,16 @@ def jugar(tablero, jugadores, cartas_secretas, interfaz):
         jugadores.append(jugador_turno)
 
 
-def clue(ruta):
-    """Carga las configuraciones desde la ruta dada, crea el tablero, cartas y jugadores, luego
-    selecciona las cartas secretas, mezcla y asigna el resto a los jugadores. Empieza el juego, 
-    y al terminar avisa si hubo ganador o todos perdieron."""
+def clue():
+    """ Ejecuta el juego de Clue.
+    Carga las configuraciones, crea el tablero, cartas y jugadores.
+    Lugo selecciona las cartas secretas, mezcla y asigna el resto a los jugadores.
+    Empieza el juego, y al terminar avisa si hubo ganador o todos perdieron."""
     interfaz_juego = InterfazJuego()
     interfaz_jugador = InterfazJugador()
 
     try:
-        tablero, jugadores, cartas = inicializar_juego(ruta, interfaz_jugador)
+        tablero, jugadores, cartas = inicializar_juego(interfaz_jugador)
     except IOError:
         raise IOError("El archivo de configuracion del tablero no existe!!")
     
@@ -139,7 +139,4 @@ def clue(ruta):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        clue(ARCHIVO_DEFAULT)
-    else:
-        clue(sys.argv[1])
+    clue()

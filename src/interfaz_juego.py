@@ -55,7 +55,8 @@ class InterfazJuego(object):
                 return jugador_color[COLORES]
 
     def mostrar_perdedor(self, jugador):
-        """Muestra a un jugador perdedor, y no lo vuelve a mostrar mas en el tablero (aunque siga siendo parte del juego)"""
+        """Muestra a un jugador perdedor, y no lo vuelve a mostrar mas en el tablero
+        (aunque siga siendo parte del juego)"""
         color = self.color_de_jugador(jugador)
         print color[COLOR_SHELL], jugador.get_nombre(),FIN_COLOR, "ha perdido! Suerte para la proxima"
         self.jugadores.remove((jugador, color))

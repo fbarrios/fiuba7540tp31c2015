@@ -21,13 +21,13 @@ En la Universidad de Alfarería de la ciudad de Buenos Aires el querido docente
  Aunque algunos afirman que ha ido de vacaciones a una pomposa isla del Caribe 
  habiendo apagado su celular, la idea que recorre los pasillos es 
  más sombría: los rumores cuentan que alguno de sus allegados se ha encargado de él 
- para siempre con el objetivo de conseguir un aumento.
+ para siempre; con el objetivo de conseguir algún beneficio.
  
 Un plantel de selectos decidió que los sospechosos a investigar son:
 
    - Coronel D. Bárbara: al haber desaparecido Toban Lajp, es quien queda a cargo
-   de su materia. Es ciertamente el más beneficiado.
-   - Christian Grace: el extravagante joven millonario que tiene locas a las
+   de su materia. Este ascenso inmediato lo convierte ciertamente en el más beneficiado.
+   - Christian Grace: el extravagante joven millonario que tiene locos a alumnos y a
    alumnas, y que se sospecha que hace tiempo está planeando maniobras para obtener 
    protagonismo.
    - Haskell Martinez: siendo que se encuentra queriendo ejercer una carrera
@@ -64,11 +64,11 @@ finalizarlo no debería ser una tarea tan laboriosa.
 2. Consigna
 ========
 
-Se pide implementar una variación del juego Clue. Entre las diferencias del juego
-con la pedida se encuentran:
+El Clue o Cluedo es un juego de mesa cuyas reglas se encuentran disponibles en Internet [^2]. 
+Se pide desarrollar una simplificación del juego, con las siguientes variaciones:
 
-- El tablero está simplificado con respecto al juego original. En esta versión
-tiene forma circular y el jugador podrá seleccionar el sentido del movimiento.
+- El tablero es más sencillo que en la versión original. Aquí 
+tiene forma circular y el jugador a moverse podrá seleccionar el sentido del movimiento.
 
 - Los jugadores no representan a ningún personaje del juego. El único movimiento
 que tienen las piezas del tablero serán en los sentidos horario y antihorario 
@@ -86,16 +86,28 @@ entre los objetos del juego.
 Para ejecutar la interfaz gráfica, se deberá tener instalado el paquete
 PyGame:
 
-- En sistemas operativos Linux, ejecutar: `sudo apt-get install python-pygame`.
+- En sistemas operativos Linux, ejecutar: `sudo apt-get install python-pygame`
 - En sistemas operativos Windows, descargar el instalador desde el sitio web
-de PyGame [^2].
+de PyGame [^3].
 
 
 El alumno deberá completar las clases faltantes 
 (`Tablero`, `Jugador`, `Dados` (los cuatro tipos) y `ListadoCartas`), respetando 
 las especificaciones que se encuentran en el código fuente.
 
-[^2]: http://www.pygame.org/download.shtml
+
+Adicionalmente se deberán programar pruebas para las clases
+`Tablero`, `Dados` y `ListadoCartas` siguiendo el ejemplo provisto y usando
+la herramienta de pruebas automatizadas de Python: unittest [^4].
+
+Para correr las pruebas simplemente se debe ejecutar el archivo de pruebas:
+
+    python pruebas_tp3.py
+
+
+[^2]: http://www.hasbro.com/common/instruct/Clue_in_Spanish_%282002%29.pdf
+[^3]: http://www.pygame.org/download.shtml
+[^4]: https://docs.python.org/2/library/unittest.html
 
 
 3. Criterios de aprobación
@@ -144,7 +156,8 @@ debe cumplir los siguientes requerimientos:
   - Todas las clases y funciones deben estar adecuadamente documentadas, y 
   donde sea necesario el código debe estar acompañado de comentarios.
   
-  - Además, claro, debe satisfacer la especificación de la interfaz.
+  - Además, claro, debe satisfacer la especificación de la interfaz y ninguna
+  prueba puede fallar.
 
 
 4. Entrega
